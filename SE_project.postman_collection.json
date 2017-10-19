@@ -1,0 +1,516 @@
+{
+	"id": "73651fe6-8bb0-446f-96da-c34401d1f177",
+	"name": "SE_project",
+	"description": "APIs for SE project\n",
+	"order": [],
+	"folders": [
+		{
+			"name": "Admin",
+			"description": "Functionalities of admin",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"order": [
+				"b759be4a-1483-90ca-7291-031aac7dd78d",
+				"ee123afc-a7f9-5b1b-1fa3-aea6634bea14",
+				"27f2ce9a-e446-31de-5c2b-d804821b4351",
+				"b3d16527-6e27-38b8-8db2-2dd0e8ef5b55"
+			],
+			"owner": "1806277",
+			"folders_order": [],
+			"id": "fb38f4ad-3d2a-41bc-6d36-e59da7f71c95"
+		},
+		{
+			"name": "Login sign_up",
+			"description": "",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"order": [
+				"fb825126-d26b-283f-2731-8cb7b8c9ae51",
+				"77605fa6-e312-0150-b017-c7dc88e993b9"
+			],
+			"owner": "1806277",
+			"folders_order": [],
+			"id": "44941532-2185-697d-677d-f249f216af9a"
+		},
+		{
+			"name": "Profiling",
+			"description": "Manage User profile",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"order": [
+				"6f29cf8d-9cce-cc84-dc2f-d8126de03b5b",
+				"87bdb31e-3f21-2ff9-80b9-e0a0ae05a8dc"
+			],
+			"owner": "1806277",
+			"folders_order": [],
+			"id": "a744d1b2-4b05-d17c-28a4-dcb7a32403c7"
+		},
+		{
+			"name": "Recommendation",
+			"description": "Return a list of reco",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"order": [
+				"017e5dec-71ff-f6c4-31ce-6093f9cb3b6e"
+			],
+			"owner": "1806277",
+			"folders_order": [],
+			"id": "362f8871-1943-24b3-43f1-869311214ad7"
+		},
+		{
+			"name": "Shopping",
+			"description": "Shopping related requests like viewing purchase history, viewing products etc..",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"order": [
+				"0b058b8b-63c4-8bb2-b4cd-f0e8c55c95b2",
+				"a43f2c83-537a-12e1-e99f-7443b05663bb",
+				"17022e5b-bef5-c5da-291d-362afa41824f"
+			],
+			"owner": "1806277",
+			"folders_order": [],
+			"id": "81cd994f-7e5c-122a-f882-af0550c1e86c"
+		}
+	],
+	"folders_order": [
+		"fb38f4ad-3d2a-41bc-6d36-e59da7f71c95",
+		"a744d1b2-4b05-d17c-28a4-dcb7a32403c7",
+		"44941532-2185-697d-677d-f249f216af9a",
+		"81cd994f-7e5c-122a-f882-af0550c1e86c",
+		"362f8871-1943-24b3-43f1-869311214ad7"
+	],
+	"timestamp": 1508388553502,
+	"owner": "1806277",
+	"public": false,
+	"requests": [
+		{
+			"id": "017e5dec-71ff-f6c4-31ce-6093f9cb3b6e",
+			"headers": "Content-type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/recommendations?uid=uid_of_user",
+			"folder": "362f8871-1943-24b3-43f1-869311214ad7",
+			"queryParams": [
+				{
+					"key": "uid",
+					"value": "uid_of_user",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508394920336,
+			"name": "Get a list of recommendations for a user",
+			"description": "Based on the uid passed in the GET url, return a list of all recommendation to display in JSON form\n\n{\n\tcount:\"no_of_reco\",\n\treco_items:[\n\t\t{\n\t\t\tpid:\"pid of product_1\",\n\t\t\timg_src: \"image url for product\",\n\t\t\tcost:\"cost of product\"\n\t\t},\n\t\t{\n\t\t\tpid:\"pid of product_2\",\n\t\t\timg_src: \"image url for product2\",\n\t\t\tcost:\"cost of product\"\n\t\t}\n\t]\n\t\n}\n\t",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"responses": []
+		},
+		{
+			"id": "0b058b8b-63c4-8bb2-b4cd-f0e8c55c95b2",
+			"headers": "Content-Type: application/josn\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/josn",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/purchase_history?uid=uid_of_user",
+			"folder": "81cd994f-7e5c-122a-f882-af0550c1e86c",
+			"queryParams": [
+				{
+					"key": "uid",
+					"value": "uid_of_user",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508394959325,
+			"name": "purchase history",
+			"description": "Response based on uid passed -\n\n{\n\tcount:\"no_of products in history\",\n\tproducts:[\n\t\t{\n\t\t\tpid:\"pid of product_1\",\n\t\t\timg:\"img_src\",\n\t\t\tprice:\"price of product1\",\n\t\t\tname:\"name of product1\"\n\t\t},\n\t\t{\n\t\t\tpid:\"pid of product_2\",\n\t\t\timg:\"img_src\",\n\t\t\tprice:\"price of product2\",\n\t\t\tname:\"name of product2\"\n\t\t},\n\t]\n}",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "0b058b8b-63c4-8bb2-b4cd-f0e8c55c95b2"
+		},
+		{
+			"id": "17022e5b-bef5-c5da-291d-362afa41824f",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/search?term=search term",
+			"queryParams": [
+				{
+					"key": "term",
+					"value": "search term",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"data": null,
+			"dataMode": "params",
+			"name": "Search a product",
+			"description": "Search for a product online\n\nResponse:- \n\n{\n\tcount:\"no_of_products_returned\",\n\tproducts:[\n\t\t{\n\t\t\tpid:\"id of product\",\n\t\t\tprice:\"cost\",\n\t\t\tname:\"name of prod1\",\n\t\t\timg:\"img_src\"\n\t\t},\n\t\t{\n\t\t\tpid:\"id of product2\",\n\t\t\tprice:\"cost\",\n\t\t\tname:\"name of prod2\",\n\t\t\timg:\"img_src\"\n\t\t}\n\t]\n}",
+			"descriptionFormat": "html",
+			"time": 1508402619815,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "81cd994f-7e5c-122a-f882-af0550c1e86c"
+		},
+		{
+			"id": "27f2ce9a-e446-31de-5c2b-d804821b4351",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/seller?admin_id=id_of_admin&uid=id_of_seller to be deleted",
+			"folder": "fb38f4ad-3d2a-41bc-6d36-e59da7f71c95",
+			"queryParams": [
+				{
+					"key": "admin_id",
+					"value": "id_of_admin",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "id_of_seller to be deleted",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508401268697,
+			"name": "Delete a seller",
+			"description": "Responese - \n\n{\n\tsuccessful:true\n}\n\nsuccessful = false if seller id doesn't exist or admin id is invalid",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"responses": []
+		},
+		{
+			"id": "6f29cf8d-9cce-cc84-dc2f-d8126de03b5b",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/update_profile",
+			"folder": "a744d1b2-4b05-d17c-28a4-dcb7a32403c7",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508401937139,
+			"name": "Update profile",
+			"description": "Response:-\n\n{\n\t\"success\":\"true\"\n}\n\nsuccess false if some error(Ex mail id already exists for another user or old password is incorrect)",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"responses": [],
+			"rawModeData": "{\n\t\"id\": user_id,\n\t\"ph_no\":\"changed_ph_no\",\n\t\"mail_id\":\"changed_mail\",\n\t\"addr\":\"addr given during reg\",\n\t\"old_password\":\"old password\"\n\t\"new_password\":\"new password\"\n}"
+		},
+		{
+			"id": "77605fa6-e312-0150-b017-c7dc88e993b9",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/register",
+			"folder": "44941532-2185-697d-677d-f249f216af9a",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508399992223,
+			"name": "Register",
+			"description": "Register as buyer or seller\n\nResponse:\n\n\nIf registered successfully at backend:-\n\n{\n\tsuccess:\"true\"\n}\n\nIf registration is for role of seller put entry in pending table\n\nIf error at backend:-\n\n{\n\terror:\"error desc\"\n}\n\nex of error - username already exists",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"responses": [],
+			"rawModeData": "{\n\t\"username\":\"uname\",\n\t\"mail_id\":\"mail of user\",\n\t\"ph_no\":\"phone number of user\"\n\t\"password\":\"pwd\",\n\t\"role\":\"seller/buyer\"\n}"
+		},
+		{
+			"id": "87bdb31e-3f21-2ff9-80b9-e0a0ae05a8dc",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/profile?uid=uid_of_user",
+			"folder": "a744d1b2-4b05-d17c-28a4-dcb7a32403c7",
+			"queryParams": [
+				{
+					"key": "uid",
+					"value": "uid_of_user",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508394938024,
+			"name": "get user profile",
+			"description": "Based on thr uid passed give response -\n\n{\n\t\"uname\":\"Registered username\",\n\t\"role\":\"seller/admin/user\"\n\t\"billing_addr\":\"Address registered by user\",\n\t\"phone_no\":\"registered ph_no\",\n\t\"mail_id\":\"registered mail id\"\n}\n\nIf error:-\n\n{\n\terror:\"Description of error\"\n}",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"responses": []
+		},
+		{
+			"id": "a43f2c83-537a-12e1-e99f-7443b05663bb",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/products?pid=id_of_product",
+			"queryParams": [
+				{
+					"key": "pid",
+					"value": "id_of_product",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"data": null,
+			"dataMode": "params",
+			"name": "get a product",
+			"description": "Based on pid passed the response will be -\n\n{\n\t\"pid\": \"Id of the product being sent\"\n\t\"price\":\"price of product\",\n\tpname:\"name of product\",\n\timg_src:\"url of image\"\n}\n\nOn error-\n\n{\n\terror:\"Product not found\"\n}",
+			"descriptionFormat": "html",
+			"time": 1508394882042,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "81cd994f-7e5c-122a-f882-af0550c1e86c"
+		},
+		{
+			"id": "b3d16527-6e27-38b8-8db2-2dd0e8ef5b55",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost/api/user?admin_id=id_of_admin&uid=id_of_user_to be deleted",
+			"queryParams": [
+				{
+					"key": "admin_id",
+					"value": "id_of_admin",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "uid",
+					"value": "id_of_user_to be deleted",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"data": null,
+			"dataMode": "params",
+			"name": "Delete user",
+			"description": "Response same as del seller",
+			"descriptionFormat": "html",
+			"time": 1508401324537,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "fb38f4ad-3d2a-41bc-6d36-e59da7f71c95"
+		},
+		{
+			"id": "b759be4a-1483-90ca-7291-031aac7dd78d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/user_list?admin_id=id_of_admin",
+			"queryParams": [
+				{
+					"key": "admin_id",
+					"value": "id_of_admin",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"data": null,
+			"dataMode": "params",
+			"name": "list all customers ",
+			"description": "Response:-\n\n{\n\tcount:\"number of customers returned\",\n\tcustomers:[\n\t\t{\n\t\t\tid:\"uid of customer1\",\n\t\t\tname:\"uname of customer1\",\n\t\t\t\"mail\":\"email_id of customer1\"\n\t\t\t\n\t\t},\n\t\t\t{\n\t\t\tid:\"uid of customer2\",\n\t\t\tname:\"uname of customer2\",\n\t\t\t\"mail\":\"email_id of customer2\"\n\t\t\t\n\t\t},\n\t\t\n\t]\n}\n\nVerify if admin_id is valid - else give error -\n\n{\n\terror: \"Unauthorized access\"\n}",
+			"descriptionFormat": "html",
+			"time": 1508400763558,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "fb38f4ad-3d2a-41bc-6d36-e59da7f71c95"
+		},
+		{
+			"id": "ee123afc-a7f9-5b1b-1fa3-aea6634bea14",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/seller_list?admin_id=id_of_admin",
+			"queryParams": [
+				{
+					"key": "admin_id",
+					"value": "id_of_admin",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"data": null,
+			"dataMode": "params",
+			"name": "get seller list",
+			"description": "Response same as that for list all customers",
+			"descriptionFormat": "html",
+			"time": 1508400874835,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "fb38f4ad-3d2a-41bc-6d36-e59da7f71c95"
+		},
+		{
+			"id": "fb825126-d26b-283f-2731-8cb7b8c9ae51",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost/api/login",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "73651fe6-8bb0-446f-96da-c34401d1f177",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Login",
+			"description": "Login a regitered user.\n\nResponse: -\n\nIf successful login\n\n{\n\tsuccess:\"true\",\n\tuid:\"id of logged in user\"\n}\n\nIf login unsuccessful - \n\n{\n\terror: \"error description\"\n}\n\ntwo kinds of errors -\n\ni)\"invalid credentials\"\nii)\"approval of registration pending\" - occurs when seller registration has not been approved by admin",
+			"descriptionFormat": "html",
+			"time": 1508388820742,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "44941532-2185-697d-677d-f249f216af9a",
+			"rawModeData": "{\n\t\"username\":\"username\",\n\t\"password\":\"password\"\n}"
+		}
+	]
+}
