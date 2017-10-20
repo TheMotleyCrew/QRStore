@@ -74,6 +74,17 @@ INSERT INTO user (uid, uname, urole, username, password, wallet) VALUES
 (8, 'Mayank Kumar Singh', 'user', 'mayank', 'mayank', 58500),
 (9, 'Varun Pai', 'user', 'varun', 'varun', 79000);
 
+INSERT INTO pending (uid, uname, urole, username, password, wallet) VALUES
+(1, 'Ramadas Mahale', 'admin', 'ramadas', 'ramadas', 0),
+(2, 'Ritesh Surana', 'admin', 'ritesh', 'ritesh', 0),
+(3, 'Samyak M', 'retail', 'samyak', 'samyak', 250000),
+(4, 'Suhas M', 'retail', 'suhas', 'suhas', 275000),
+(5, 'Shrinidhi B', 'retail', 'shrinidhi', 'shrinidhi', 260000),
+(6, 'Rakshita Prabhu', 'user', 'rakshita', 'rakshita', 50000),
+(7, 'Surabhi Ravindra', 'user', 'surabhi', 'surabhi', 69500),
+(8, 'Mayank Kumar Singh', 'user', 'mayank', 'mayank', 58500),
+(9, 'Varun Pai', 'user', 'varun', 'varun', 79000);
+
 INSERT INTO stores (sid, sname, slocation) VALUES
 (1, 'Brand Factory', 'Yelahanka'),
 (2, 'Big Bazaar', 'Vijayanagar'),

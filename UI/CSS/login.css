@@ -13,6 +13,16 @@
 	background-color: #99ccff;
 }
 
+.darkblue
+{
+	background-color: #6d7fcc;
+}
+
+.blackfont
+{
+	color: black;
+}
+
 .georgia
 {
 	font-family: "Georgia", serif;
@@ -61,4 +71,9 @@ a
 label
 {
     font-size: 25px;
+}
+
+.sidebar
+{
+	font-size: 20px;
 }
