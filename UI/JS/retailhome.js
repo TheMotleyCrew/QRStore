@@ -54,7 +54,7 @@ function getProducts()
 				ele = document.createElement('tr');
 				ele.setAttribute("id", myObj[i]['pid']);
 				ele.innerHTML = '<td></td><td style="text-align:center; padding-top:5%;" class="sidebar">'+myObj[i]['pname']+'</td>';
-				ele.innerHTML += '<td style="text-align:center;"><b>Price: </b>'+myObj[i]['price']+'<br><b>Qty: </b>'+myObj[i]['qty']+'<br><b>Category: </b>'+myObj[i]['category']+'<br><b>Store: </b>'+myObj[i]['sname']+'</td>';
+				ele.innerHTML += '<td style="text-align:center;"><b>Price: </b>'+myObj[i]['price']+'<br><b>Qty: </b>'+myObj[i]['qty']+'<br><b>Category: </b>'+myObj[i]['category']+'</td>';
 				ele.innerHTML += '<td style="text-align:center; padding-top:5%;" class="sidebar"><button onclick="EditProducts('+myObj[i]['pid']+')" type="button" class="btn btn-info sidebar">Edit</button></td>';
 				ele.innerHTML += '<td style="text-align:center; padding-top:5%;" class="sidebar"><button onclick="DeleteProducts('+myObj[i]['pid']+')" type="button" class="btn btn-danger sidebar">Delete</button></td><td></td>';
 				document.getElementById('tablecontent').appendChild(ele);
