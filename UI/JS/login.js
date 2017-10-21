@@ -51,27 +51,31 @@ function signIn()
 		{
 			if(this.readyState==4 && this.status==200)
 			{
-				if(this.responseText.localeCompare('False')==0)
+				myObj = this.responseText.split(';');
+				if(myObj[0].localeCompare('False')==0)
 				{
 					document.getElementById('errorbox').innerHTML='<center>Wrong Username or Password<center>';
 					document.getElementById('errorbox').style='font-size: 25px; color: white; background-color: red';
 				}
-				else if(this.responseText.localeCompare('user')==0)
+				else if(myObj[0].localeCompare('user')==0)
 				{	
+					sessionStorage.setItem("uid", myObj[1]);
 					sessionStorage.setItem("username", user);
-					sessionStorage.setItem("role", this.responseText);
+					sessionStorage.setItem("role", myObj[0]);
 					document.location.href = './UserHome.html';
 				}
-				else if(this.responseText.localeCompare('admin')==0)
+				else if(myObj[0].localeCompare('admin')==0)
 				{	
+					sessionStorage.setItem("uid", myObj[1]);
 					sessionStorage.setItem("username", user);
-					sessionStorage.setItem("role", this.responseText);
+					sessionStorage.setItem("role", myObj[0]);
 					document.location.href = './AdminHome.html';
 				}
-				else if(this.responseText.localeCompare('retail')==0)
+				else if(myObj[0].localeCompare('retail')==0)
 				{	
+					sessionStorage.setItem("uid", myObj[1]);
 					sessionStorage.setItem("username", user);
-					sessionStorage.setItem("role", this.responseText);
+					sessionStorage.setItem("role", myObj[0]);
 					document.location.href = './RetailHome.html';
 				}
 			}
@@ -114,9 +118,8 @@ function signUp()
 					}
 					else if(this.responseText.localeCompare('True')==0 && role.localeCompare('user')==0)
 					{	
-						sessionStorage.setItem("username", user);
-						sessionStorage.setItem("role", role);
-						document.location.href = './UserHome.html';
+						document.getElementById('errorbox').innerHTML='<center>Registration successflu. Proceed to LogIn<center>';
+						document.getElementById('errorbox').style='font-size: 25px; color: black; background-color: #99ff99';
 					}
 				}
 			};

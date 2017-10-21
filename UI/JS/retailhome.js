@@ -72,7 +72,7 @@ function getProducts()
 	}
 	xhr2.open('POST', '../../Backend/Scripts/GetProducts.php', true);
 	xhr2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr2.send('uid=0');
+	xhr2.send('uid='+sessionStorage.getItem('uid'));
 }
 
 function NextProducts(count)
