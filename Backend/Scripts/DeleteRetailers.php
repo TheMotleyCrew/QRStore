@@ -12,7 +12,7 @@
 		{
 			$result2=mysqli_query($connect,"DELETE FROM cart WHERE pid='".$row1['pid']."'");
 		}
-		$result1=mysqli_query($connect,"DELETE FROM products WHERE uid='".$row['uid']."'");
+		$result1=mysqli_query($connect,"UPDATE products SET qty=-1 WHERE uid='".$row['uid']."'");
 	}
 	
 	$result=mysqli_query($connect,"DELETE FROM user WHERE username='".$username."'");

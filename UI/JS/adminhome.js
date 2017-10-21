@@ -34,7 +34,7 @@ function getPending()
 				myObj[i]['username'] = "'"+myObj[i]['username']+"'";
 				ele.innerHTML = '<td></td><td style="text-align:center;" class="sidebar">'+myObj[i]['uname']+'</td>';
 				ele.innerHTML += '<td style="text-align:center; padding-top:2%;"><span class="sidebar label label-warning">Pending</span></td>';
-				ele.innerHTML += '<td style="text-align:center;" class="sidebar"><button onclick="ConfirmPending('+myObj[i]['username']+')" type="button" class="btn btn-success sidebar">Confirm</button></td>';
+				ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="ConfirmPending('+myObj[i]['username']+')" type="button" class="btn btn-success sidebar">Confirm</button></td>';
 				ele.innerHTML += '<td style="text-align:center;" class="sidebar"><button onclick="RejectPending('+myObj[i]['username']+')" type="button" class="btn btn-danger sidebar">Reject</button></td><td></td>';
 				document.getElementById('tablecontent').appendChild(ele);
 			}
