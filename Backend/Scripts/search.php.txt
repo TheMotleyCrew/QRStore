@@ -1,0 +1,31 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "QRStore";
+/// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+      {
+	extract($_GET);
+	$sql = "SELECT pid,price,pname,category FROM products WHERE pname='$searchterm';
+	$result = mysqli_query($conn, $sql);
+	$response =array("count"=>0,"products"=>[]);
+	$count =0;
+	if (mysqli_num_rows($result) > 0) {
+		
+		
+		while($row = mysqli_fetch_assoc($result)) {
+			$sql = "SELECT pid,price,pname FROM products WHERE pname=" . $row['pname'];
+			$prod_desc = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+			array_push($response['products'],json_encode(array('pid'=>$row['pid'],'name'=>$prod_desc['pname'],'price'=>$prod_desc['price'])));
+			$count++;
+		}
+		$response['count'] = $count;
+		
+	} 
+	echo json_encode($response);	
+}
