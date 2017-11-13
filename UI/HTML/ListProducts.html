@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="../CSS/ListProducts.css" rel="stylesheet">
+
+    <script src="../JS/ListProducts.js" type="text/javascript"></script>
+
+</head>
+
+<body onload="init()">
+
+    <center>
+        <span>Category:</span>
+        <select onchange="filterByProduct(event)">
+            <option value="apparel" >Apparel</option>
+            <option value="electronic">Electronic</option>
+        </select>
+
+        &nbsp;
+        <span>Sort by:</span>
+        <select>
+            <option value="pname">Name</option>
+            <option value="price">Price</option>
+        </select>
+    </center>
+
+    <br>
+
+    <!--container for holding product cards-->
+    <div class="container">
+        <div id="card_holder" class="flex-row row">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
