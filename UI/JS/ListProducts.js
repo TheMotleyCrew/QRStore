@@ -84,11 +84,31 @@ function addCard(card) {
 }
 
 function filterByProduct(e){
+
     sortFilter = 'pname';
     category = e.target.value;
-    // console.log("Hey: "+e.target.value);
     pageNo = 1;
-
+    emptyProductList();
     getProducts(pageNo);
 
+}
+
+function sortResults(e){
+    
+    sortFilter = e.target.value;
+    pageNo = 1;
+    emptyProductList();
+    getProducts(pageNo);
+
+}
+
+function emptyProductList(){
+    var card_holder = document.getElementById('card_holder');
+    
+    console.log(card_holder.childNodes[0]);
+
+    while (card_holder.hasChildNodes()) {   
+        card_holder.removeChild(card_holder.firstChild);
+    }
+    
 }
