@@ -1,24 +1,46 @@
 <html>
 
 <head>
-	<link href="../CSS/bootstrap.min.css" rel="stylesheet">
-	<link href="../Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
-	<link href="../Fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width" />
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="../Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../Fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-	<link href="../CSS/cart.css" rel="stylesheet">
-	<script src="../JS/Userwallet.js" type="text/javascript"></script>
+    <link href="../CSS/cart.css" rel="stylesheet">
+    <script src="../JS/Userwallet.js" type="text/javascript"></script>
 
-	<script src="../JS/cart.js" type="text/javascript"></script>
+    <script src="../JS/cart.js" type="text/javascript"></script>
 <style type="text/css">
 .my-container{
 
-	margin-top:10%;
+    margin-top:10%;
+}
+
+    
+    @media only screen and (max-width: 480px) {
+        .amt{
+            position:relative;
+            width: 38%;
+            margin-left:30%;
+            margin-right:30%;
+            margin-top:50px;
+            margin-bottom:2px;
+    }
+        .my-container{
+            top:30%;
+            width: 400px;
+            position:relative;
+            height:100px;
+        }
+    /* For mobile phones: */
+   
+
 }
 </style>
 </head>
 
 <body onload="getWalletBalance()">
-	<nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid myd">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -59,20 +81,22 @@
 
 
         <div class="container my-container">
-        	<div class="row>">
-        		<div class="col-md-5 text-left"><button onclick="getWalletBalance()" class="btn-lg btn-Info" > Wallet Balance 
-        		<i class="fa fa-rupee"></i>
-        		<span id="walletbalance" class="label label-default"> 0</span></button>
+            <!--<div class="row>"> -->
+           
+                <div class=" col-xs-12 col-md-5 text-center "><button onclick="getWalletBalance()" class="btn-lg btn-Info" > Wallet Balance 
+                <i class="fa fa-rupee"></i>
+                <span id="walletbalance" class="label label-default"> 0</span></button>
 
-        		</div>
-        		
-       			<div class="col-md-4 text-center">
-       				<input class="form-control" id="addAmount" onchange="handleamount(this)" type="number" max-length="6" step="0.01" min="1" placeholder="Enter amount to add">
-       			</div>
-        		<div class="col-md-3 text-left">
-        			<button onclick="addMoneyToWallet()"  class="btn btn-primary ">Add Money to Wallet</button>
-        		</div>
-        	
+                </div>
+                
+                <div class="col-md-4 col-xs-12 text-center amt">
+
+                    <input onfocus="style='none'" class="form-control" id="addAmount" name="amount" type="number" max-length="6" min="0" placeholder="Enter amount to add">
+                </div>
+                <div class="col-md-3 col-xs-12 text-center ">
+                    <button type="submit" onclick="addMoneyToWallet()"  class="btn-lg btn-primary ">Add Money to Wallet</button>
+                </div>
+               
 
 
                                             
