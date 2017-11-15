@@ -83,14 +83,22 @@ elseif($_SERVER['REQUEST_METHOD']=='DELETE'){
 
 elseif($_SERVER['REQUEST_METHOD']=='POST'){
 	extract($_POST);
-
-	$sql = "INSERT INTO cart (uid,pid,store_id,qty) VALUES ('$uid','$pid','$sid','$qty')";
-	if(mysqli_query($conn, $sql)){
-		echo "Successfully added to cart";
+	
+	$sql = "SELECT * from cart WHERE uid='$uid' AND pid='$pid'";
+	$result = mysqli_query($conn, $sql);
+	if(mysqli_num_rows($result) > 0){
+		echo "Item already in cart";
 	}
 
 	else{
-		echo "Something went wrong";
+		$sql = "INSERT INTO cart (uid,pid,store_id,qty) VALUES ('$uid','$pid','$sid','$qty')";
+		if(mysqli_query($conn, $sql)){
+			echo "Successfully added to cart";
+		}
+	
+		else{
+			echo "Something went wrong";
+		}
 	}
 
 	
