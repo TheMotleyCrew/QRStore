@@ -1,9 +1,5 @@
 <?php
 
-    //todo
-    //Check if it works for last page
-    //Add filters
-
     extract($_GET);
     
     header("Access-Control-Allow-Origin: *");
