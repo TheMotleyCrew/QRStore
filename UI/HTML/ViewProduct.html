@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Product page</title>
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+    <link href="../CSS/ViewProduct.css" rel="stylesheet">
+
+    <script type="text/javascript" src="../JS/ViewProduct.js"></script>
+
+</head>
+
+<body onload="init()">
+    <div class="container-fluid">
+        <div class="content-wrapper">
+            <div class="item-container">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="product col-md-3 service-image-left">
+
+                            <center>
+                                <img id="item-display" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
+                            </center>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div id="product-title" class="product-title"></div>
+                            <p id="qty-available"></p>
+                            <div id="product-desc" class="product-desc"></div>
+                            <hr>
+                            <div id="product-price" class="product-price"></div>
+                            <div id="product-stock" class="product-stock"></div>
+                            <hr>
+                            <div id="sellers"></div>
+                            <hr>
+                            <div class="btn-group cart">
+                                <button id="add-button" type="button" class="btn btn-success" onclick="addToCart()">
+                                        Add to cart 
+                                </button>
+                            </div>
+                            <br>
+                            <center><div id="cart-prompt" class="col-xs-5 alert fade in"></div></center>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
