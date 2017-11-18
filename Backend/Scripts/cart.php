@@ -18,7 +18,14 @@ if (!$conn) {
 if($_SERVER['REQUEST_METHOD']=='GET'){
 	extract($_GET);
 
-	$sql = "SELECT pid,qty FROM cart WHERE uid='$uid' and store_id='$sid'";
+    if($online==1){
+        // echo "Yes!";
+        $sql = "SELECT u.username as seller,c.pid,c.qty FROM cart as c , products as p, user as u WHERE c.uid='$uid' and c.pid=p.pid and p.sid=1 and p.uid=u.uid ";
+    }
+    else{
+        $sql = "SELECT s.sname as seller ,c.pid,c.qty FROM cart as c , products as p, stores as s WHERE c.uid='$uid' and c.pid=p.pid and p.sid!=1 and p.sid=s.sid ";        
+    }
+	// $sql = "SELECT pid,qty FROM cart WHERE uid='$uid' and store_id='$sid'";
 	$result = mysqli_query($conn, $sql);
 
 	$response =array("count"=>0,"products"=>[]);
@@ -30,7 +37,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 			$sql = "SELECT price,pname FROM products WHERE pid=" . $row['pid'];
 			$prod_desc = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 			$total = $prod_desc['price'] * $row['qty'];
-			array_push($response['products'],json_encode(array('pid'=>$row['pid'],'name'=>$prod_desc['pname'],'price'=>$prod_desc['price'],'qty'=>$row['qty'],'total'=>$total)));
+			array_push($response['products'],json_encode(array('pid'=>$row['pid'],'name'=>$prod_desc['pname'],'price'=>$prod_desc['price'],'qty'=>$row['qty'],'seller'=>$row['seller'],'total'=>$total)));
 			$count++;
 		}
 		$response['count'] = $count;
@@ -52,7 +59,7 @@ elseif($_SERVER['REQUEST_METHOD']=='PUT'){
 
 		$qty = $products[$i]['qty'];
 		$pid = $products[$i]['pid'];
-		$sql = "UPDATE cart SET qty='$qty' WHERE pid='$pid' AND store_id='$sid' AND uid='$uid'";
+		$sql = "UPDATE cart SET qty='$qty' WHERE pid='$pid' AND uid='$uid'";
 		if (mysqli_query($conn, $sql)) {
 			echo "Record updated successfully";
 		} else {
@@ -69,10 +76,10 @@ elseif($_SERVER['REQUEST_METHOD']=='DELETE'){
 	parse_str(file_get_contents("php://input"),$post_vars);
 
 	$uid = $post_vars['uid'];
-	$sid = $post_vars['sid'];
+	// $sid = $post_vars['sid'];
 	$pid = $post_vars['pid'];
 
-	$sql = "DELETE from cart WHERE pid='$pid' AND store_id='$sid' AND uid='$uid'";
+	$sql = "DELETE from cart WHERE pid='$pid' AND uid='$uid'";
 	if (mysqli_query($conn, $sql)) {
 		echo "Record updated successfully";
 	} else {
@@ -91,7 +98,7 @@ elseif($_SERVER['REQUEST_METHOD']=='POST'){
 	}
 
 	else{
-		$sql = "INSERT INTO cart (uid,pid,store_id,qty) VALUES ('$uid','$pid','$sid','$qty')";
+		$sql = "INSERT INTO cart (uid,pid,qty) VALUES ('$uid','$pid','$qty')";
 		if(mysqli_query($conn, $sql)){
 			echo "Successfully added to cart";
 		}

@@ -1,7 +1,19 @@
 function getCart() {
+
+	var online =1;
+	user_id = sessionStorage.getItem('uid');
+	
+
+	if(sessionStorage.getItem('cartMode')=='online'){
+		online=1;
+	}
+	else{
+		online=0;	
+	}
+
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = disp_products;
-	xhr.open("GET", "http://localhost/QRStore/Backend/Scripts/cart.php?uid=6&sid=0", true);
+	xhr.open("GET", "http://localhost/QRStore/Backend/Scripts/cart.php?uid="+user_id+"&online="+online, true);
 	xhr.send();
 }
 
@@ -23,6 +35,7 @@ function disp_products() {
 
 			new_product_row.querySelector('#prod_name').innerHTML = prod_description['name'];
 			new_product_row.querySelector('#prod_price').innerHTML = prod_description['price'];
+			new_product_row.querySelector('#seller_name').innerHTML = "( Seller: "+ prod_description['seller']+" )";
 			new_product_row.querySelector('#qty').value = prod_description['qty'];
 			new_product_row.querySelector('#prod_subTotal').innerHTML = prod_description['total'];
 			new_product_row.setAttribute('id', prod_description['pid']);
@@ -35,7 +48,7 @@ function disp_products() {
 		}
 
 		if(count==0){
-			document.getElementById('container').innerHTML = '<h2>Shopping Cart is empty';
+			document.getElementById('container').innerHTML = '<h2>Shopping Cart is empty</h2>';
 		}
 
 		updateTotalDisp();
@@ -66,7 +79,7 @@ function deleteItem(pid) {
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function (j) {console.log(j); return function () { updateView(j); }; }(pid);
 	xhr.open('DELETE','http://localhost/QRStore/Backend/Scripts/cart.php',true);
-	xhr.send("sid=0&uid=6&pid="+pid);
+	xhr.send("uid="+user_id+"&pid="+pid);
 	
 }
 
@@ -91,7 +104,7 @@ function updateCart() {
 	xhr.onreadystatechange = disp;
 	xhr.open('PUT', 'http://localhost/QRStore/Backend/Scripts/cart.php', true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	xhr.send("sid=0&uid=6&count="+count+"&products=" + JSON.stringify(getProducts()));
+	xhr.send("uid="+user_id+"&count="+count+"&products=" + JSON.stringify(getProducts()));
 }
 
 function disp() {
