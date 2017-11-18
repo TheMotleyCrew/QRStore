@@ -20,13 +20,34 @@
 
     }
     .well{
-        width:85%
+        width:100%
     }
+
     @media only screen and (max-width: 480px) {
     /* horizontal scrollbar for tables if mobile screen */
     .mobiletable {
         overflow-x: auto;
         display: block;
+    }
+    .container-fluid{
+        margin-top:0.2px;
+        margin-top:0.2px;
+        margin-left:0.1px;
+        margin-right:0.1px;
+    }
+    .container-fluid{
+        padding-top:2px;
+        padding-top:2px;
+        padding-left:1px;
+        padding-right:1px;
+    }
+    .total{
+        font-weight: bold;
+        font-size:18px;
+        margin-left:40px;
+        margin-right:2px;
+        display:inline-block;
+            
     }
 }
     </style>
@@ -69,17 +90,33 @@
             </div>
         </div>
     </nav>
-    <
-    <div class="container my-container">
-    <div class="container page-header"><h2><span class ="label label-primary ">My orders</span></h2></div>
-
-    
-    <div class="container order-list table-responsive table-hover" id="myorder">
-            
-            
-                                              
-    </div>        
- </div>
+        <div class="container-fluid my-container">
+            <div class="row content">
+                <div class="col-md-3 col-xs-12 sidenav">
+                    <div class="row welcome " style="margin:10px;">
+                        <h4>
+                            <div class="col-md-2 ">Hello,</div>
+                            <div class="col-md-2 " id="welcome"></div>
+                        </h4>
+                    </div>
+                
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ><a href="Myaccount.html">My Account</a></li>
+                        <li class="active"><a href="#">My Orders</a></li>
+                        <li><a href="UserWallet.html">Wallet <i class="fa fa-rupee"></i><span class="badge" id="bal"></span></a></li>
+                        
+                    </ul><br>
+                </div>
+                <div class="container-fluid col-md-9 col-xs-12">
+                    <h4><span >&nbsp</h4>
+                    <hr><br>
+                    <div class="container-fluid">
+                        <div class="container-fluid" id="myorder">
+                        </div>
+                    </div>
+                </div>   
+            </div>     
+        </div>
 
 </body>
 </html>

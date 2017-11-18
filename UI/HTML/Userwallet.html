@@ -16,7 +16,11 @@
     margin-top:10%;
 }
 
-    
+    .amt{
+            position:relative;
+            width: 20%;
+           
+    }
     @media only screen and (max-width: 480px) {
         .amt{
             position:relative;
@@ -78,30 +82,44 @@
     </nav>
 
 
+    <div class="container-fluid">
+          <div class="row content">
+            <div class="col-md-3 col-xs-12 sidenav">
+                <div class="row welcome " style="margin:10px;">
+                <h4> <div class="col-md-2 ">Hello,</div>
+                 <div class="col-md-2 " id="welcome">   </div></h4>
+                </div>
+                
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ><a href="Myaccount.html">My Account</a></li>
+                        <li><a href="Myorders.html">My Orders</a></li>
+                        <li class="active"><a href="#">Wallet <i class="fa fa-rupee"></i><span class="badge" id="bal"></span></a></li>
+                        
+                    </ul><br>
+                    
+                
+            </div>
 
-
-        <div class="container my-container">
+            <div class="container-fluid my-container col-md-9 col-xs-12 ">
             <!--<div class="row>"> -->
            
                 <div class=" col-xs-12 col-md-5 text-center "><button onclick="getWalletBalance()" class="btn-lg btn-Info" > Wallet Balance 
-                <i class="fa fa-rupee"></i>
-                <span id="walletbalance" class="label label-default"> 0</span></button>
+                    <i class="fa fa-rupee"></i>
+                    <span id="walletbalance" class="label label-default"> 0</span></button>
 
                 </div>
                 
                 <div class="col-md-4 col-xs-12 text-center amt">
 
-                    <input onfocus="style='none'" class="form-control" id="addAmount" name="amount" type="number" max-length="6" min="0" placeholder="Enter amount to add">
+                    <input style="padding:1px;" class="form-control" id="addAmount" name="amount" type="number" max-length="6" min="0" placeholder="Enter amount to add">
                 </div>
                 <div class="col-md-3 col-xs-12 text-center ">
                     <button type="submit" onclick="addMoneyToWallet()"  class="btn-lg btn-primary ">Add Money to Wallet</button>
                 </div>
-               
+            </div>
+        </div>
+    </div>
 
-
-                                            
-            
-         </div>
 </body>
          
 </html>
