@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS purchase;
 CREATE TABLE IF NOT EXISTS purchase 
 (
   bid int(100) NOT NULL,
-  date DATE NOT NULL, 
+  pdate DATE NOT NULL, 
   uid int(100) NOT NULL,
   pid int(100) NOT NULL,
   qty int(100) NOT NULL,
@@ -170,7 +170,7 @@ INSERT INTO cart (uid, pid, qty) VALUES
 (9, 28, 3),
 (9, 22, 2);
 
-INSERT INTO purchase (bid, uid, pid, qty, date, price) VALUES
+INSERT INTO purchase (bid, uid, pid, qty, pdate, price) VALUES
 (1, 6, 45, 5, '2017-11-10', 11000),
 (1, 6, 35, 1, '2017-11-10', 150000),
 (1, 6, 30, 2, '2017-11-10', 2500),
