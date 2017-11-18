@@ -1,15 +1,140 @@
-<html>
-    <head>
-        <script>
-            function getTot(){
-                xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = disp;
-                
-            }
-        </script>
-    </head>
 
-    <body>
-        Total : 
-    </body>
+<html>
+	<head>
+	
+		<link rel='stylesheet' href='../CSS/bootstrap.css'>
+		<link rel='stylesheet' href='../CSS/ourstyle.css'>
+		<link rel='stylesheet' href='../CSS/login.css'>
+		<link rel="stylesheet" href="../CSS/adminhome.css">
+		<script src="../JS/jquery.js"></script>
+		<script src="../JS/bootstrap.js"></script>
+		<script src="../JS/retailhome.js"></script>
+		<script src="../JS/jquery.nicescroll.min.js"></script>
+      <script  type="text/javascript"> 
+//button implementation is left. As further location was not known.
+
+  function success(){
+	
+			var xhr= new XMLHttpRequest();
+			xhr.open("GET","/QRStore-master/QRStore-master/UI/Scripts/checkout.php",true);
+			xhr.send();
+			xhr.onreadystatechange=function()
+			{
+			  if(xhr.readyState==4 && xhr.status== 200)
+				{
+				var data = xhr.responseText.split(":");
+				//alert(data);
+				var t = document.getElementById("tab1");
+				var to= document.getElementById("tot");
+				//alert(to);
+				var x = data[data.length-1];
+				var q = x.split(",");
+				
+				//alert(x);
+				var i=0;
+					
+					for (var i = 0 ; i < data.length -1; i++) {
+						var tr = document.createElement("tr");
+                             var d = data[i].split(",");
+							
+						for (var j = 0; j < 6 ; j++) {
+						  
+							var td = document.createElement("td");
+							td.setAttribute("style", "text-align: center;");
+							var txt = document.createTextNode(d[j]);
+							td.appendChild(txt);
+							tr.appendChild(td);
+							}
+							t.appendChild(tr);
+						}
+						
+					to.innerHTML= "Total : " +    q[0];
+					var dis = document.getElementById("dis");
+					if(q[1] == 1) dis.innerHTML = "Success"
+					else dis.innerHTML = "Not sufficient balance with user";
+				}	
+			};
+		
+			}
+			
+	</script>
+	 
+	 
+	 
+
+	</head>
+ 	
+	<body class='georgia' onload="success()">
+	  
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                
+                <div class="sidebar-header">
+                    <h1>QR Store</h3>
+                </div>
+
+                <ul class="list-unstyled components sidebar">
+                    <li class="active">
+                        <a>Store</a>
+                    </li>
+                    <li>
+                        <a href="javascript:Logout()">Logout</a>
+                    </li>
+                </ul>
+
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content" bgcolor="red">
+
+				<table width='100%' style='border-color: #99ccff;'>
+					<th class='darkblue' width='10%'>
+						<div width='100%' class="navbar-header">
+                            <button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                            </button>
+                        </div>
+					</th>
+					<th class='blue'>
+						<p style='text-align: right;color: #6d7fcc; padding-right: 5%; padding-top: 2%'><b class='sidebar' id='adminusername'></b></p>
+					</th>
+					<tr>
+						<td colspan = 2>
+							<br><br>
+							
+							<br><br><br>
+							
+						</td>
+				</tr>
+			
+		</table>
+			
+            </div>
+        </div>
+		
+        <div class="overlay"></div>
+		
+		</br></br></br></br>
+		<table class="intt" width ='100%' id = "tab1">
+								<thead>
+									<tr>
+								
+										<th class='sidebar' style='text-align:center;' >Product_id</th>
+										<th class='sidebar' style='text-align:center;' >Product_Name</th>
+										<th class='sidebar' style='text-align:center;' >Quantity</th>
+										<th class='sidebar' style='text-align:center;' >Net Price</th>
+										<th class='sidebar' style='text-align:center;' >Store ID</th>
+										<th class='sidebar' style='text-align:center;' >Availability</th>
+										
+									</tr></thead>
+							
+								
+		</table>
+		
+		<button type="button" id = "c" class="btn btn-success" style="float:right" onclick="check()" >Success</button>
+		<br></br>
+	   <div id = "tot" class='sidebar' style='text-align:centre;'></div>
+	   <div id ="dis" class='sidebar'></div> 
+	</body>
 </html>
