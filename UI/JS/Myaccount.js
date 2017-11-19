@@ -3,9 +3,15 @@ var pass;
 function setup(){
 	togglep=true;
 	var ed=document.getElementById("editinfo");
+	var em=document.getElementById("editemail");
+	var eph=document.getElementById("editphone");
+	var ea=document.getElementById("editaddress");
 	var ep=document.getElementById("chngpass");
 	ed.addEventListener("click",toggleInput);
 	ep.addEventListener("click",togglepasswordblock);
+	ea.addEventListener("click",toggleAddress);
+	em.addEventListener("click",toggleEmail);
+	eph.addEventListener("click",togglePhone);
 	getPersonalInfo();
 }
 function getPersonalInfo(){
@@ -19,6 +25,9 @@ function getPersonalInfo(){
 
 				document.getElementById('fullname').value=data[0];
 				document.getElementById('username').value=data[1];
+				document.getElementById('email').value=data[5];
+				document.getElementById('phone').value=data[6];
+				document.getElementById('address').value=data[4];
 				document.getElementById('bal').innerHTML=data[3];
 				pass=data[2];
 		}
@@ -37,6 +46,37 @@ function toggleInput(){
 	toggle=fullname.disabled ==false? toggleDis(fullname,username) : toggleEn(fullname,username);
 
 }
+function toggleDis(fullname,username){
+	document.getElementById("editinfo").innerHTML="Edit";
+	fullname.disabled=true;
+	username.disabled=true;
+	getPersonalInfo();
+	document.getElementById("saveinfo").style.display="none";
+
+}
+function toggleEn(fullname,username){
+	document.getElementById("editinfo").innerHTML="Cancel";
+	fullname.disabled=false;
+	username.disabled=false;
+	document.getElementById("saveinfo").style.display="block";
+}
+function toggleEmail(){
+
+	email=document.getElementById("email");
+	toggle=email.disabled ==false? emailDis(email) : emailEn(email);
+
+}
+function emailEn(email){
+	document.getElementById("editemail").innerHTML="Cancel";
+	email.disabled=false;
+	document.getElementById("saveemail").style.display="block";
+}
+function emailDis(email){
+	document.getElementById("editemail").innerHTML="Edit";
+	email.disabled=true;
+	getPersonalInfo();
+	document.getElementById("saveemail").style.display="none";
+}
 function togglepasswordblock(){
 
 	block=document.getElementById("passwordblock");
@@ -54,19 +94,36 @@ function hidepass(block,chng){
 	block.style.display="none";
 	chng.innerHTML="Change";
 }
-function toggleDis(fullname,username){
-	document.getElementById("editinfo").innerHTML="Edit";
-	fullname.disabled=true;
-	username.disabled=true;
-	getPersonalInfo();
-	document.getElementById("saveinfo").style.display="none";
+function togglePhone(){
+	phone=document.getElementById("phone");
+	toggle=phone.disabled ==false? phoneDis(phone) : phoneEn(phone);
 
 }
-function toggleEn(fullname,username){
-	document.getElementById("editinfo").innerHTML="Cancel";
-	fullname.disabled=false;
-	username.disabled=false;
-	document.getElementById("saveinfo").style.display="block";
+function phoneEn(phone){
+	document.getElementById("editphone").innerHTML="Cancel";
+	phone.disabled=false;
+	document.getElementById("savephone").style.display="block";
+}
+function phoneDis(phone){
+	document.getElementById("editphone").innerHTML="Edit";
+	phone.disabled=true;
+	getPersonalInfo();
+	document.getElementById("savephone").style.display="none";
+}
+function toggleAddress(){
+	address=document.getElementById("address");
+	toggle=address.disabled ==false? addressDis(address) : addressEn(address);
+}
+function addressEn(address){
+	document.getElementById("editaddress").innerHTML="Cancel";
+	address.disabled=false;
+	document.getElementById("saveaddress").style.display="block";
+}
+function addressDis(address){
+	document.getElementById("editaddress").innerHTML="Edit";
+	address.disabled=true;
+	getPersonalInfo();
+	document.getElementById("saveaddress").style.display="none";
 }
 function updateinfo(){
 	un=sessionStorage.getItem("username");
@@ -76,7 +133,6 @@ function updateinfo(){
 	xhr1.onreadystatechange=function(){
 		if(xhr1.status=200 && xhr1.readyState==4){
 			if(xhr1.responseText==1){
-				alert("hi");
 					spn=document.getElementById("alrt");
 					spn.className="alert alert-success";
 					spn.innerHTML="Inforamation Successfully Updated";
@@ -139,3 +195,66 @@ function validatepass(oldpassword,newpassword,repassword){
 	}
 	else return true;
 }
+function updateemail(){
+	un=sessionStorage.getItem("username");
+	email=document.getElementById("email").value;
+	xhr1=new XMLHttpRequest();
+	xhr1.onreadystatechange=function(){
+		if(xhr1.status=200 && xhr1.readyState==4){
+			if(xhr1.responseText==1){
+					spn=document.getElementById("alrt");
+					spn.className="alert alert-success";
+					spn.innerHTML="Email Successfully Updated";
+					toggleEmail();
+				}
+		}
+	};
+	xhr1.open('POST','../../Backend/Scripts/updateUserInfo.php',true);
+	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	xhr1.send('user='+un+'&email='+email+"&toggle=3");
+
+}
+function updatephone(){
+	un=sessionStorage.getItem("username");
+	phone=document.getElementById("phone").value;
+	xhr1=new XMLHttpRequest();
+	xhr1.onreadystatechange=function(){
+		if(xhr1.status=200 && xhr1.readyState==4){
+			if(xhr1.responseText==1){
+					spn=document.getElementById("alrt");
+					spn.className="alert alert-success";
+					spn.innerHTML="Mobile Number Successfully Updated";
+					togglePhone();
+				}
+		}
+	};
+	xhr1.open('POST','../../Backend/Scripts/updateUserInfo.php',true);
+	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	xhr1.send('user='+un+'&phone='+phone+"&toggle=4");
+
+}
+function updateaddress(){
+	un=sessionStorage.getItem("username");
+	address=document.getElementById("address").value;
+	xhr1=new XMLHttpRequest();
+	xhr1.onreadystatechange=function(){
+		if(xhr1.status=200 && xhr1.readyState==4){
+			if(xhr1.responseText==1){
+					spn=document.getElementById("alrt");
+					spn.className="alert alert-success";
+					spn.innerHTML="Address Successfully Updated";
+					toggleAddress();
+				}
+		}
+	};
+	xhr1.open('POST','../../Backend/Scripts/updateUserInfo.php',true);
+	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	xhr1.send('user='+un+'&address='+address+"&toggle=5");
+
+}
+function toggleggpass(ip){
+	document.getElementById(ip).type=="password"? document.getElementById(ip).type="text": document.getElementById(ip).type="password";
+}	
