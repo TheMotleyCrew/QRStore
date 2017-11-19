@@ -21,16 +21,16 @@
        
         
         if($online==1){            
-            $sql = "SELECT * from products WHERE pname='$pname' and qty>0 and sid=0 ORDER BY price ASC ";
+            $sql = "SELECT * from products WHERE pname='$pname' and qty>0 and sid=1 ORDER BY price ASC ";
         }
        
         else{
-            $sql = "SELECT * from products WHERE pname='$pname' and qty>0 and sid>0 ORDER BY price ASC ";            
+            $sql = "SELECT * from products WHERE pid='$pid' and qty>0 and sid!=1";            
         }
 
         $result = mysqli_query($conn, $sql);
 
-        $response =array("count"=>0,"pname"=>$pname,'desc'=>"", "products"=>[]);
+        $response =array("count"=>0,"pname"=>"", "products"=>[]);
         $count =0;
 
         if (mysqli_num_rows($result) > 0) {
@@ -39,7 +39,7 @@
             // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
 
-                $response['desc'] = $row['description'];
+                $response['pname'] = $row['pname'];
 
                 if($online==1){
                     // echo $row['sid'];
@@ -51,9 +51,13 @@
                 }
 
                 else{
-                    array_push($response['products'],json_encode(array('pid'=>$row['pid'],'price'=>$row['price'],'qty'=>$row['qty'])));
+                    $seller_query = "SELECT * from stores WHERE sid=". $row['sid'];
+                    $seller_result = mysqli_query($conn, $seller_query);
+                    $sname = mysqli_fetch_assoc($seller_result)['sname'];
+                    array_push($response['products'],json_encode(array('sname'=>$sname,'pid'=>$row['pid'],'price'=>$row['price'],'qty'=>$row['qty'])));
                 }
 
+                // echo $response['products'][$count];
                 $count++;
                
                 
@@ -62,7 +66,7 @@
             
         } 
     
-        echo json_encode($response);	
+        echo json_encode($response);
         
     }
 ?>

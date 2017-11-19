@@ -2,15 +2,38 @@
 // check for offline stores - sellers shouldn't be displayed
 
 function init() {
+    sessionStorage.setItem('viewProductMode','online');
+    if(sessionStorage.getItem('viewProductMode')=='online'){
+        sessionStorage.setItem('pname','SmartPhone');
+        var pname = sessionStorage.getItem('pname');
+        online = 1;
+    }
+    else{
+        sessionStorage.setItem('pid','17');
+        var pid = sessionStorage.getItem('pid');
+        online = 0;
+        var elem = document.getElementById('reco');
+        elem.parentNode.removeChild(elem);
+    }
     xhr = new XMLHttpRequest();
     xhr.onreadystatechange = displayProduct;
-    xhr.open("GET", "http://localhost/QRStore/Backend/Scripts/ViewProduct.php?pname=My Product&online=1",true);
+    if(online==1){
+       
+        // xhrReco = new XMLHttpRequest();
+        // xhrReco.onreadystatechange = dispReco;
+        // xhrReco.open('');
+
+        xhr.open("GET", "http://localhost/QRStore/Backend/Scripts/ViewProduct.php?pname="+pname+"&online=1",true);
+    }
+    else{
+        xhr.open("GET", "http://localhost/QRStore/Backend/Scripts/ViewProduct.php?pid="+pid+"&online=0",true);
+    }
     xhr.send() ;
 }
 
 function displayProduct() {
     if (xhr.readyState == 4 && xhr.status == 200) {
-        console.log(xhr.responseText);
+        // console.log(xhr.responseText);
         response = JSON.parse(xhr.responseText);
         document.getElementById("product-title").innerHTML = response['pname'];
 
@@ -33,22 +56,31 @@ function displayProduct() {
             setQty(JSON.parse(response['products'][0])['qty']);
             setPrice(JSON.parse(response['products'][0])['price']) ;
             
-            var seller_list = document.createElement("select");
-            seller_list.onchange = function(e){displayProductInfo(e.target.value);}
-            seller_list.setAttribute('class','form-control text-center');
-            seller_list.setAttribute('id','seller-chosen');
+            if(online==1){
+                var seller_list = document.createElement("select");
+                seller_list.onchange = function(e){displayProductInfo(e.target.value);}
+                seller_list.setAttribute('class','form-control text-center');
+                seller_list.setAttribute('id','seller-chosen');
             
-            for(var i=0;i<count;i++){
+            
+                for(var i=0;i<count;i++){
 
-                var product_info =  JSON.parse(response['products'][i]);
-                var op = new Option();
-                op.value = product_info['pid'];
-                op.text = product_info['sname'] + ' sells at $' + product_info['price'];
-                seller_list.options.add(op);
+                    var product_info =  JSON.parse(response['products'][i]);
+                    var op = new Option();
+                    op.value = product_info['pid'];
+                    op.text = product_info['sname'] + ' sells at $' + product_info['price'];
+                    seller_list.options.add(op);
+                }
+                var seller_heading = "More sellers: ";                
             }
 
+             else{
+                var seller_list = document.createTextNode(JSON.parse(response['products'][0])['sname']);
+                var seller_heading = "Sold At: ";
+             }
+
             var sellers = document.getElementById('sellers');
-            sellers.appendChild(document.createTextNode('More sellers: '));
+            sellers.appendChild(document.createTextNode(seller_heading));
             sellers.appendChild(document.createElement('br'));
             sellers.appendChild(document.createElement('br'));            
             sellers.appendChild(seller_list);
@@ -86,13 +118,18 @@ function setQty(qty){
 }
 
 function addToCart(){
-    
-    var pid = document.getElementById('seller-chosen').value;
+    if(online==1){
+        var pid = document.getElementById('seller-chosen').value;
+    }
+    else{
+        var pid = sessionStorage.getItem('pid');
+    }
+    var uid = sessionStorage.getItem('uid');
     xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = addConfirm;
 	xhr.open('POST', 'http://localhost/QRStore/Backend/Scripts/cart.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send('qty=1&uid=6&sid=0&pid='+pid);
+    xhr.send('qty=1&uid='+uid+'&pid='+pid);
 }
 
 function addConfirm(){
