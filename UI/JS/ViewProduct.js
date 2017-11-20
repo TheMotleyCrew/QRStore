@@ -88,10 +88,11 @@ function init() {
     xhr.onreadystatechange = displayProduct;
     if(online==1){
        
-        // xhrReco = new XMLHttpRequest();
-        // xhrReco.onreadystatechange = dispReco;
-        // xhrReco.open('');
-	
+        xhrReco = new XMLHttpRequest();
+        xhrReco.onreadystatechange = dispReco;
+        xhrReco.open('GET','http://localhost/QRStore/Backend/Scripts/Recommendation_system/getSuggestions.php?pname='+sessionStorage.getItem('pname'),true);
+        xhrReco.send();
+
         xhr.open("GET", "http://localhost/QRStore/Backend/Scripts/ViewProduct.php?pname="+pname+"&online=1",true);
     }
     else{
@@ -222,4 +223,41 @@ function removeAlert(){
     var cart_prompt = document.getElementById('cart-prompt');
     cart_prompt.innerHTML = "";
     cart_prompt.style.display = "none";
+}
+
+function dispReco(){
+    if (xhrReco.readyState == 4 && xhrReco.status == 200) {
+        console.log(xhrReco.responseText)
+        var response = JSON.parse(xhrReco.responseText);
+        var count = response['count'];
+        
+        if(count>0){
+            var first_reco = JSON.parse(response['products'][0]);
+            console.log(first_reco);
+            var reco1 = document.getElementById('reco1');
+            reco1.removeChild(reco1.firstChild);
+            reco1.innerHTML = "<img src='../Assets/placeholder.png' width='100%'/>";
+            reco1.innerHTML += '<h4>'+ first_reco['pname']+'</h4>'
+        }
+        if(count==2){
+            var second_reco = JSON.parse(response['products'][1]);
+            var reco2 = document.getElementById('reco2');
+            reco2.removeChild(reco2.firstChild);
+            reco2.innerHTML = "<img src='../Assets/placeholder.png' width='100%'/>";
+            reco2.innerHTML += '<h4>'+ second_reco['pname']+'</h4>'
+        }
+        
+        if(count==0){
+            var reco1 = document.getElementById('reco1');
+            var reco2 = document.getElementById('reco2');
+            reco1.innerHTML = "<h4>No more suggestions</h4>";
+            reco2.innerHTML = "<h4>No more suggestions</h4>";
+        }
+
+        if(count==1){
+            var reco2 = document.getElementById('reco2');
+            // reco2.innerHTML = "<img src='../Assets/placeholder.png'/>"; 
+            reco2.innerHTML += "<h4>No more suggestions</h4>";
+        }
+    }
 }

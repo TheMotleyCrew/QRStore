@@ -1,6 +1,6 @@
 <?php
 
     extract($_GET);
-    $result =exec('python Recommendation_system.py '.$pname);
+    $result =exec('python Reco_enhancement.py "'.$pname.'"');
     echo $result;
 ?>

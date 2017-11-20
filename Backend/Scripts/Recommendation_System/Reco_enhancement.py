@@ -1,14 +1,6 @@
 #!C:\Users\sankalp mahale\AppData\Local\Programs\Python\Python36-32\python.exe
 
 import os
-
-if('APPDATA' in os.environ):
-    print("Appdata present")
-    print(os.environ['APPDATA'])
-else:
-    # print("Appdata NOT present :'(")
-    os.environ['APPDATA'] ='C:\\Users\\sankalp mahale\\AppData\\Roaming'
-
 from stemming.porter2 import stem
 from nltk import sent_tokenize
 from nltk import word_tokenize
@@ -25,11 +17,6 @@ import sys, json
 
 stemmer = SnowballStemmer("english")
 stopwords = stopwords.words('english')
-
-stopwords = []
-with open('stopwords.txt') as f:
-    for line in f:
-        stopwords.append(line.strip())
 
 # print(stopwords)
 
@@ -77,16 +64,18 @@ for row in cur.fetchall():
 
 product_descriptions = []
 
+pid_pname_map = {}
+
 i=0
 for desc in chosen_product_desc:
 
     cur.execute("Select * from products where pname!='"+str(pname)+"'")
 
-
     product_descriptions.append({})
 
     for row in cur.fetchall():
         product_descriptions[i][row['pid']]= row['description']
+        pid_pname_map[row['pid']] = row['pname']
 
 
     for k in product_descriptions[i]:
@@ -119,11 +108,27 @@ similarities = sorted(similarities.items(), key=operator.itemgetter(1),reverse=T
 # print(similarities)
 count = min(2,len(similarities))
 
-response = {'count':count,'products':[]}
+response = {'products':[]}
 
-for i in range(count):
-    cur.execute("Select * from products where pid="+str(similarities[i][0]))
-    for row in cur.fetchall():
-        response['products'].append(json.dumps({'products':row['pname'],'pid':similarities[i][0]}))
+suggestions_so_far = []
 
+# for i in range(count):
+#     cur.execute("Select * from products where pid="+str(similarities[i][0]))
+#     for row in cur.fetchall():
+#         response['products'].append(json.dumps({'products':row['pname'],'pid':similarities[i][0]}))
+
+i=0
+# print(len(similarities))
+while (len(response['products']) < count) and (i < len(similarities)):
+    
+    # print(i,end="-")
+    # print(pid_pname_map[similarities[i][0]])
+    if(pid_pname_map[similarities[i][0]] not in suggestions_so_far):
+        cur.execute("Select * from products where pid="+str(similarities[i][0]))
+        for row in cur.fetchall():
+            response['products'].append(json.dumps({'pname':row['pname'],'pid':similarities[i][0]}))
+            suggestions_so_far.append(row['pname'])
+    i = i+1
+
+response['count'] = len(response['products'])
 print(json.dumps(response))
