@@ -1,122 +1,97 @@
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-	<meta name="viewport" content="width=device-width" />
-    <link href="../CSS/bootstrap.min.css" rel="stylesheet">
     <link href="../Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="../Fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/cart.css">
+    <link rel='stylesheet' href='../CSS/bootstrap.css'>
+	<link rel='stylesheet' href='../CSS/ourstyle.css'>
+	<link rel='stylesheet' href='../CSS/login.css'>
+	<link rel="stylesheet" href="../CSS/adminhome.css">
+	<script src="../JS/jquery.js"></script>
+	<script src="../JS/bootstrap.js"></script>
+	<script src="../JS/jquery.nicescroll.min.js"></script>
     <script src="../JS/Myorders.js" type="text/javascript"></script>
-    <style type="text/css">
-    tr td {
-        height:45px;
-    }
-    .my-container{
-        width:100%;
-        top:10%;
-        position:relative;
-    }
-    .order-container{
-        width:85%;
-
-    }
-    .well{
-        width:100%
-    }
-
-    @media only screen and (max-width: 480px) {
-    /* horizontal scrollbar for tables if mobile screen */
-    .mobiletable {
-        overflow-x: auto;
-        display: block;
-    }
-    .container-fluid{
-        margin-top:0.2px;
-        margin-top:0.2px;
-        margin-left:0.1px;
-        margin-right:0.1px;
-    }
-    .container-fluid{
-        padding-top:2px;
-        padding-top:2px;
-        padding-left:1px;
-        padding-right:1px;
-    }
-    .total{
-        font-weight: bold;
-        font-size:18px;
-        margin-left:40px;
-        margin-right:2px;
-        display:inline-block;
-            
-    }
-}
-    </style>
+	
 </head>
-<body onload="getOrders()">
 
-<nav class="navbar navbar-inverse">
-        <div class="container-fluid myd">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>                        
-                    </button>
-                <a class="navbar-brand" href="#">WebSiteName</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li class="active"><a href="#">Profile</a></li>
-                    <li class="active"><a href="#">Shop</a></li>
-                    <li class="active">
-                        <div class="search-bar">
-                            <input type="text" placeholder="What are you looking for?" />
-                            <button type="button" class="btn btn-info btn-sm">
-                                    <span class="glyphicon glyphicon-search"></span>
-                              </button>
-                        </div>
-                    </li>
+<body>
+
+ 
+ <div class="wrapper">
+		<!-- Sidebar Holder -->
+		<nav id="sidebar">
+			
+			<div class="sidebar-header">
+				<h3 id='adminusername'></h3>
+			</div>
+
+			<ul class="list-unstyled components sidebar">
+				<li>
+					<a href="./Myaccount.html">Profile</a>
+				</li>
+				<li>
+					<a href="./ListProducts.html">Store</a>
+				</li>
+				<li>
+					<a href="./QRScan.html">Scanner</a>
+				</li>
+				<li>
+                        <a href="./cart_intermediate.html">Cart</a>
+                </li>
+				<li>
+					<a href='./Userwallet.html'>Wallet</a>
+				</li>
+				<li class='active'>
+						<a>Previous Orders</a>
+				</li>
+				<li>
+					<a href="javascript:Logout()">Logout</a>
+				</li>
+			</ul>
+
+		</nav>
+
+		<!-- Page Content Holder -->
+		<div id="content">
+
+			<table width='100%' style='border-color: #99ccff;'>
+				<th class='darkblue' width='15%'>
+					<div width='100%' class="navbar-header">
+						<button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
+							<i class="glyphicon glyphicon-align-left"></i>
+						</button>
+					</div>
+				</th>
+				<th class='blue' width='85%'>
+					
+				</th>
+				<tr>
+					<td colspan = 2>
+    <h2><span class ="label label-primary ">My orders</span></h2>
+	<br>
+    
+    <div class="container order-list table-responsive table-hover" id="myorder">
+            
+            
+                                                      
+ </div>
+
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+	<div class="overlay"></div>
 
 
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
 
-                    <li><a href="#"><span class="glyphicon glyphicon-piggy-bank"></span></a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
-                    <li><a href="#">Username</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-        <div class="container-fluid my-container">
-            <div class="row content">
-                <div class="col-md-3 col-xs-12 sidenav">
-                    <div class="row welcome " style="margin:10px;">
-                        <h4>
-                            <div class="col-md-2 ">Hello,</div>
-                            <div class="col-md-2 " id="welcome"></div>
-                        </h4>
-                    </div>
-                
-                    <ul class="nav nav-pills nav-stacked">
-                        <li ><a href="Myaccount.html">My Account</a></li>
-                        <li class="active"><a href="#">My Orders</a></li>
-                        <li><a href="UserWallet.html">Wallet <i class="fa fa-rupee"></i><span class="badge" id="bal"></span></a></li>
-                        
-                    </ul><br>
-                </div>
-                <div class="container-fluid col-md-9 col-xs-12">
-                    <h4><span >&nbsp</h4>
-                    <hr><br>
-                    <div class="container-fluid">
-                        <div class="container-fluid" id="myorder">
-                        </div>
-                    </div>
-                </div>   
-            </div>     
-        </div>
 
+    
+
+
+ 
 </body>
 </html>

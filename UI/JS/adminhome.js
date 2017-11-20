@@ -19,6 +19,8 @@ $(document).ready(function () {
 	
 });
 
+emptyflag = 1;
+
 function getPending()
 {
 	xhr1 = new XMLHttpRequest();
@@ -29,15 +31,14 @@ function getPending()
 			var myObj = JSON.parse(this.responseText);
 			for(i=0;i<myObj.length;i++)
 			{
+				emptyflag = 0;
 				ele = document.createElement('tr');
 				ele.setAttribute("id", myObj[i]['username']);
 				myObj[i]['username'] = "'"+myObj[i]['username']+"'";
-				ele.innerHTML = '<td></td><td style="text-align:center;" class="sidebar">'+myObj[i]['uname']+'</td>';
-				ele.innerHTML += '<td style="text-align:center; padding-top:2%;"><span class="sidebar label label-warning">Pending</span></td>';
-				ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="ConfirmPending('+myObj[i]['username']+')" type="button" class="btn btn-success sidebar">Confirm</button></td>';
-				ele.innerHTML += '<td style="text-align:center;" class="sidebar"><button onclick="RejectPending('+myObj[i]['username']+')" type="button" class="btn btn-danger sidebar">Reject</button></td><td></td>';
+				ele.innerHTML = '<td></td><td style="word-wrap: break-word;">'+myObj[i]['uname']+'<br><span style="position:relative; top:10px" class="label label-warning">Pending</span><br><br><button onclick="ConfirmPending('+myObj[i]['username']+')" type="button" class="btn btn-success sidebar"><span class="glyphicon glyphicon-ok"></span> Accept</button>&ensp;<button onclick="RejectPending('+myObj[i]['username']+')" type="button" class="btn btn-danger sidebar"><span class="glyphicon glyphicon-remove"></span> Reject</button></td><td></td>';
 				document.getElementById('tablecontent').appendChild(ele);
 			}
+			getRetailers();
 		}
 	}
 	xhr1.open('POST', '../../Backend/Scripts/GetPending.php', true);
@@ -55,12 +56,17 @@ function getRetailers()
 			var myObj = JSON.parse(this.responseText);
 			for(i=0;i<myObj.length;i++)
 			{
+				emptyflag = 0;
 				ele = document.createElement('tr');
 				ele.setAttribute("id", myObj[i]['username']);
 				myObj[i]['username'] = "'"+myObj[i]['username']+"'";
-				ele.innerHTML = '<td></td><td style="text-align:center;" class="sidebar">'+myObj[i]['uname']+'</td>';
-				ele.innerHTML += '<td style="text-align:center; padding-top:2%;"><span class="sidebar label label-success">Active</span></td>';
-				ele.innerHTML += '<td colspan=2 style="text-align:center;" class="sidebar"><button onclick="DeleteRetailers('+myObj[i]['username']+')" type="button" class="btn btn-danger sidebar">Delete Retailer</button></td><td></td>';
+				ele.innerHTML = '<td></td><td style="word-wrap: break-word;">'+myObj[i]['uname']+'<br><span style="position:relative; top:10px" class="label label-success">Active</span><br><br><button onclick="DeleteRetailers('+myObj[i]['username']+')" type="button" class="btn btn-danger sidebar">Remove Retailer</button></td>';
+				document.getElementById('tablecontent').appendChild(ele);
+			}
+			if(emptyflag == 1)
+			{
+				ele = document.createElement('tr');
+				ele.innerHTML = '<td></td><td style="color:#f0ad4e; font-weight:bold; word-wrap: break-word;">No Retailers Found</td>';
 				document.getElementById('tablecontent').appendChild(ele);
 			}
 		}
@@ -85,7 +91,6 @@ function ConfirmPending(user)
 		{
 			document.getElementById('tablecontent').innerHTML='';
 			getPending();
-			getRetailers();
 		}
 	}
 	xhr3.open('POST', '../../Backend/Scripts/ConfirmPending.php', true);
@@ -102,7 +107,6 @@ function RejectPending(user)
 		{
 			document.getElementById('tablecontent').innerHTML='';
 			getPending();
-			getRetailers();
 		}
 	}
 	xhr4.open('POST', '../../Backend/Scripts/RejectPending.php', true);
@@ -119,7 +123,6 @@ function DeleteRetailers(user)
 		{
 			document.getElementById('tablecontent').innerHTML='';
 			getPending();
-			getRetailers();
 		}
 	}
 	xhr5.open('POST', '../../Backend/Scripts/DeleteRetailers.php', true);
@@ -144,7 +147,6 @@ $(document).ready(function ()
 	
 	document.getElementById('tablecontent').innerHTML='';
 	getPending();
-	getRetailers();
 });
 
 $('#myModal').on('show', function() {

@@ -1,13 +1,23 @@
-function goToCart(navigateTo) {
-    if (navigateTo == 'online') {
-        sessionStorage.setItem('cartMode','online');
-    }
-    else {
-        sessionStorage.setItem('cartMode','offline');
-    }
-    window.location.href = '../HTML/cart.html';
+function addNew()
+{
+	pname=document.getElementById('pname').value;
+	price=document.getElementById('price').value;
+	qty=document.getElementById('qty').value;
+	description=document.getElementById('description').value;
+	category=document.getElementById('category').value;
+	
+	xhr1 = new XMLHttpRequest();
+	xhr1.onreadystatechange = function()
+	{
+		if(xhr1.status==200 && xhr1.readyState==4)
+		{
+			window.location.href="./RetailHome.html"
+		}
+	}
+	xhr1.open('POST', '../../Backend/Scripts/AddProduct.php', true);
+	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr1.send("uid="+sessionStorage.getItem('uid')+"&pname="+pname+"&qty="+qty+"&sid=1&category="+category+"&price="+price+"&description="+description);
 }
-
 
 function Logout()
 {
@@ -29,7 +39,6 @@ $(document).ready(function ()
 	xhr6.open('POST', '../../Backend/Scripts/GetUsername.php', true);
 	xhr6.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr6.send('user='+username);
-	
 	
 });
 

@@ -13,6 +13,12 @@
 	background-color: #99ccff;
 }
 
+.orange
+{
+	background-color: #f0ad4e;
+	color:#fff;
+}
+
 .darkblue
 {
 	background-color: #6d7fcc;
@@ -28,52 +34,15 @@
 	font-family: "Georgia", serif;
 }
 
-.heading
-{
-	font-size: 85px;
-}
-
 .curved-blue
 {
-    border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 5%;
+	border-bottom-right-radius: 5%;
     background: #99ccff;
-    padding: 20px;
 }
 
 .curved-blue-outer
 {
-    border-radius: 15px;
+    border-radius: 5%;
     border: 2px solid #99ccff;
-    padding: 20px;
-}
-
-input[type="text"] 
-{
-    font-size: 25px;
-}
-
-input[type="password"] 
-{
-    font-size: 25px;
-}
-
-input[type="button"] 
-{
-    font-size: 30px;
-}
-
-a
-{
-    font-size: 30px;
-}
-
-label
-{
-    font-size: 25px;
-}
-
-.sidebar
-{
-	font-size: 20px;
 }

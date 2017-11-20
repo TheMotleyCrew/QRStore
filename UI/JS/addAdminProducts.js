@@ -1,13 +1,44 @@
-function goToCart(navigateTo) {
-    if (navigateTo == 'online') {
-        sessionStorage.setItem('cartMode','online');
-    }
-    else {
-        sessionStorage.setItem('cartMode','offline');
-    }
-    window.location.href = '../HTML/cart.html';
+function setup()
+{
+	xhr1 = new XMLHttpRequest();
+	xhr1.onreadystatechange = function()
+	{
+		if(xhr1.status==200 && xhr1.readyState==4)
+		{
+			var response = JSON.parse(xhr1.responseText);
+			document.getElementById('store').innerHTML='';
+			for (var i = 0; i < response.length; i++) 
+			{
+				document.getElementById('store').innerHTML+='<option value="'+response[i]['sid']+'">'+response[i]['sname']+'</option>';
+			}
+		}
+	}
+	xhr1.open('POST', '../../Backend/Scripts/GetStores.php', true);
+	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr1.send();
 }
 
+function addNew()
+{
+	pname=document.getElementById('pname').value;
+	sid=document.getElementById('store').value;
+	price=document.getElementById('price').value;
+	qty=document.getElementById('qty').value;
+	description=document.getElementById('description').value;
+	category=document.getElementById('category').value;
+	
+	xhr1 = new XMLHttpRequest();
+	xhr1.onreadystatechange = function()
+	{
+		if(xhr1.status==200 && xhr1.readyState==4)
+		{
+			window.location.href="./AdminStore.html"
+		}
+	}
+	xhr1.open('POST', '../../Backend/Scripts/AddProduct.php', true);
+	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr1.send("uid=0&pname="+pname+"&qty="+qty+"&sid="+sid+"&category="+category+"&price="+price+"&description="+description);
+}
 
 function Logout()
 {
@@ -30,7 +61,7 @@ $(document).ready(function ()
 	xhr6.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr6.send('user='+username);
 	
-	
+	setup();
 });
 
 $('#myModal').on('show', function() {

@@ -1,39 +1,149 @@
 <html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<link rel='stylesheet' href='../CSS/bootstrap.css'>
+		<link rel='stylesheet' href='../CSS/ourstyle.css'>
+		<link rel='stylesheet' href='../CSS/login.css'>
+		<link rel="stylesheet" href="../CSS/adminhome.css">
+		<link href="../CSS/ListProducts.css" rel="stylesheet">
+		<script src="../JS/jquery.js"></script>
+		<script src="../JS/bootstrap.js"></script>
+		<script src="../JS/jquery.nicescroll.min.js"></script>
+		<script src="../JS/ListProducts.js" type="text/javascript"></script>
+    
+	</head>
+	<body class='georgia'>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                
+                <div class="sidebar-header">
+                    <h3 id='adminusername'></h3>
+                </div>
 
-<head>
-    <link href="../CSS/bootstrap.min.css" rel="stylesheet">
-    <link href="../CSS/ListProducts.css" rel="stylesheet">
+                <ul class="list-unstyled components sidebar">
+                    <li>
+                        <a href="./Myaccount.html">Profile</a>
+                    </li>
+					<li class="active">
+                        <a>Store</a>
+                    </li>
+                    <li>
+                        <a href="./QRScan.html">Scanner</a>
+                    </li>
+					<li>
+                        <a href="./cart_intermediate.html">Cart</a>
+                    </li>
+					<li>
+                        <a href="./Userwallet.html">Wallet</a>
+                    </li>
+                    <li>
+						<a href="./Myorders.html">Previous Orders</a>
+					</li>
+					<li>
+                        <a href="javascript:Logout()">Logout</a>
+                    </li>
+                </ul>
 
-    <script src="../JS/ListProducts.js" type="text/javascript"></script>
+            </nav>
 
-</head>
+            <!-- Page Content Holder -->
+            <div id="content">
 
-<body onload="init()">
+				<table width='100%' style='border-color: #99ccff;'>
+					<th class='darkblue' width='15%'>
+						<div width='100%' class="navbar-header">
+                            <button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                            </button>
+                        </div>
+					</th>
+					<th class='blue' width='85%'>
+						<div class="input-group">
+							<center id='searchcontainer'>
+								<input style='margin-left:7%; width:70%; height:30px' oninput="fillDatalist()" list='search' id='searchbox' class="form-control">
+								<datalist id='search'>
+								</datalist>
+							   <span class="input-group-btn">
+									<button onclick="performSearch()" class="btn btn-warning glyphicon glyphicon-search" style='height:30px' type="button"></button>
+							   </span>
+							</center>
+						</div>
+					</th>
+					<tr>
+					<td colspan=2><br></td>
+					</tr>
+					<tr>
+						<td style='border-top-left-radius: 25px; border-top-right-radius: 25px;' class='orange' colspan=2>
+							<center style='margin-top:2%'>
+								<label>Category:</label>
+								<select id='category' class="form-control" style='display:inline; width:50%' onchange="filterByProduct(event)"></select>
+							</center>
+						</td>
+					</tr>
+					<tr>
+						<td style='border-bottom-left-radius: 25px; border-bottom-right-radius: 25px;' class='orange' colspan=2>
+							<center style='margin-top:2%; margin-bottom:2%;'>
+								<label>Sort by:</label>
+								<select class="form-control" style='display:inline; width:50%' onchange="sortResults(event)">
+									<option value="pname">Name</option>
+									<option value="price">Price</option>
+								</select>
+							</center>
+						</td>
+					</tr>
+					<tr>
+						<td colspan = 2>
+							<br><br>
+							<div class="container">
+								<div id="card_holder" class="flex-row row">
 
-    <center>
-        <span>Category:</span>
-        <select onchange="filterByProduct(event)">
-            <option value="apparel" >Apparel</option>
-            <option value="electronic">Electronic</option>
-        </select>
+								</div>
+							</div>
 
-        &nbsp;
-        <span>Sort by:</span>
-        <select onchange="sortResults(event)">
-            <option value="pname">Name</option>
-            <option value="price">Price</option>
-        </select>
-    </center>
-
-    <br>
-
-    <!--container for holding product cards-->
-    <div class="container">
-        <div id="card_holder" class="flex-row row">
-
+						</td>
+					</tr>
+				</table>
+				
+            </div>
         </div>
-    </div>
-
-</body>
-
+        <div class="overlay"></div>
+	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

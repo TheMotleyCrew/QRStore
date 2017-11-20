@@ -2,15 +2,77 @@
 
     <head>
         <link rel="stylesheet" href="../CSS/bootstrap.min.css">
-        <link rel="stylesheet" href="../CSS/cart_intermediate.css">
+        <link href="../Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../Fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../CSS/cart.css">
+		<link rel='stylesheet' href='../CSS/bootstrap.css'>
+		<link rel='stylesheet' href='../CSS/ourstyle.css'>
+		<link rel='stylesheet' href='../CSS/login.css'>
+		<link rel="stylesheet" href="../CSS/adminhome.css">
+		<script src="../JS/jquery.js"></script>
+		<script src="../JS/bootstrap.js"></script>
+		<script src="../JS/jquery.nicescroll.min.js"></script>
+		<link rel="stylesheet" href="../CSS/cart_intermediate.css">
         <script type="text/javascript" src="../JS/cart_intermediate.js"></script>
-
+		
     </head>
 
     <body>
 
         <br><br>
-        <div id="container">
+		
+		
+		<div class="wrapper">
+		<!-- Sidebar Holder -->
+		<nav id="sidebar">
+			
+			<div class="sidebar-header">
+				<h3 id='adminusername'></h3>
+			</div>
+
+			<ul class="list-unstyled components sidebar">
+				<li>
+					<a href="./Myaccount.html">Profile</a>
+				</li>
+				<li>
+					<a href="./ListProducts.html">Store</a>
+				</li>
+				<li>
+					<a href="./QRScan.html">Scanner</a>
+				</li>
+				<li class='active'>
+                        <a>Cart</a>
+                </li>
+				<li>
+					<a href='./Userwallet.html'>Wallet</a>
+				</li>
+				<li>
+						<a href='./Myorders.html'>Previous Orders</a>
+				</li>
+				<li>
+					<a href="javascript:Logout()">Logout</a>
+				</li>
+			</ul>
+
+		</nav>
+
+		<!-- Page Content Holder -->
+		<div id="content">
+			<table width='100%' style='border-color: #99ccff;'>
+				<th class='darkblue' width='15%'>
+					<div width='100%' class="navbar-header">
+						<button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
+							<i class="glyphicon glyphicon-align-left"></i>
+						</button>
+					</div>
+				</th>
+				<th class='blue' width='85%'>
+					
+				</th>
+				<tr>
+					<td colspan = 2>
+					<br>
+            <div id="container">
             <div class="row">
                 <center>
                     <div id="offline_cart" onclick="goToCart('offline')">
@@ -29,6 +91,19 @@
                 </center>
             </div>
         </div>
+
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+	<div class="overlay"></div>
+
+		
+		
+		
+		
     </body>
 
 </html>

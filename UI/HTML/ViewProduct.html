@@ -1,16 +1,78 @@
 <html>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
     <title>Product page</title>
     <link href="../CSS/bootstrap.min.css" rel="stylesheet">
     <link href="../CSS/ViewProduct.css" rel="stylesheet">
-    
+    	<link rel='stylesheet' href='../CSS/bootstrap.css'>
+		<link rel='stylesheet' href='../CSS/ourstyle.css'>
+		<link rel='stylesheet' href='../CSS/login.css'>
+		<link rel="stylesheet" href="../CSS/adminhome.css">
+		<script src="../JS/jquery.js"></script>
+		<script src="../JS/bootstrap.js"></script>
+		<script src="../JS/jquery.nicescroll.min.js"></script>
+	
     <script type="text/javascript" src="../JS/ViewProduct.js"></script>
 
 </head>
 
-<body onload="init()">
-    <div class="container-fluid">
+<body>
+       
+   <div class="wrapper">
+		<!-- Sidebar Holder -->
+		<nav id="sidebar">
+			
+			<div class="sidebar-header">
+				<h3 id='adminusername'></h3>
+			</div>
+
+			<ul class="list-unstyled components sidebar">
+				<li>
+					<a href="./Myaccount.html">Profile</a>
+				</li>
+				<li>
+					<a href="./ListProducts.html">Store</a>
+				</li>
+				<li>
+					<a href="./QRScan.html">Scanner</a>
+				</li>
+				<li>
+                        <a href="./cart_intermediate.html">Cart</a>
+                </li>
+				<li>
+					<a href='./Userwallet.html'>Wallet</a>
+				</li>
+				<li>
+						<a href='Myorders.html'>Previous Orders</a>
+				</li>
+				<li>
+					<a href="javascript:Logout()">Logout</a>
+				</li>
+			</ul>
+
+		</nav>
+
+		<!-- Page Content Holder -->
+		<div id="content">
+
+			<table width='100%' style='border-color: #99ccff;'>
+				<th class='darkblue' width='15%'>
+					<div width='100%' class="navbar-header">
+						<button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
+							<i class="glyphicon glyphicon-align-left"></i>
+						</button>
+					</div>
+				</th>
+				<th class='blue' width='85%'>
+					
+				</th>
+				<tr>
+				<td colspan=2><br></td>
+					</tr>
+					
+					<tr>
+						<td colspan = 2>
+					<div class="container-fluid">
         <div class="content-wrapper">
             <div class="item-container">
                 <div class="container">
@@ -38,7 +100,7 @@
                                 </button>
                             </div>
                             <br>
-                            <center><div id="cart-prompt" class="col-xs-5 alert fade in"></div></center>
+                            <center><div id="cart-prompt" style='width:100%' class="col-xs-5 alert fade in"></div></center>
                         </div>
                     </div>
                 </div>
@@ -58,6 +120,22 @@
             </div>        
         </div>
     </center>
+								</div>
+							</div>
+
+						</td>
+					</tr>
+				</table>
+				
+            </div>
+        </div>
+        <div class="overlay"></div>
+   
+   
+   
+   
+   
+   
    
 </body>
 
