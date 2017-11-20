@@ -24,13 +24,10 @@
 
         // echo "Tot: ". $result['num_rows'];
 
-        $page_size  = 10;
-        $start = ($page_no-1)*$page_size;
-
-        $sql = "SELECT pname, min(price) as price FROM products WHERE category='$category' and sid=1 and pid NOT IN (SELECT * FROM deleted) GROUP BY pname ORDER BY $sort_field LIMIT $page_size OFFSET $start ";
+        $sql = "SELECT DISTINCT category FROM products ORDER BY category";
         $result = mysqli_query($conn, $sql);
 
-        $response =array("count"=>0,"products"=>[]);
+        $response =array("count"=>0,"category"=>[]);
         $count =0;
 		
         if (mysqli_num_rows($result) > 0) {
@@ -38,7 +35,7 @@
             // output data of each row
             while($row = mysqli_fetch_assoc($result)) {
                 
-                array_push($response['products'],json_encode(array('pname'=>$row['pname'],'price'=>$row['price'])));
+                array_push($response['category'],json_encode(array('category'=>$row['category'])));
                 $count++;
             }
             $response['count'] = $count;

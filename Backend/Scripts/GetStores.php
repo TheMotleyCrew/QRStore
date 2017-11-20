@@ -5,7 +5,7 @@
 	$connect=mysqli_connect('localhost','root','','QRStore');
 	
 	$data = array();
-	$result=mysqli_query($connect,"SELECT pid,sname,pname,qty,category,price FROM products,stores WHERE products.uid=".$uid." AND products.sid=stores.sid and products.pid NOT IN (SELECT * FROM deleted) ORDER BY qty");
+	$result=mysqli_query($connect,"SELECT sid,sname FROM stores WHERE sname!='Online'");
 	while($row=mysqli_fetch_array($result))
 	{
         $data[] = $row;

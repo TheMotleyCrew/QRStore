@@ -5,7 +5,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "QRStore";
+    $dbname = "qrstore";
     
     /// Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);

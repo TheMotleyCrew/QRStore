@@ -6,7 +6,7 @@
 	
 	if(strcmp('retail',$role)==0)
 	{
-		if(mysqli_query($connect,"INSERT INTO pending (uname, username, password, urole) VALUES ('".$name."', '".$user."', '".$pass."', '".$role."')"))
+		if(mysqli_query($connect,"INSERT INTO pending (uname, username, password) VALUES ('".$name."', '".$user."', '".$pass."')"))
 		{
 			echo 'True';
 		}

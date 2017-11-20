@@ -11,8 +11,8 @@
 		while($row1=mysqli_fetch_array($result1))
 		{
 			$result2=mysqli_query($connect,"DELETE FROM cart WHERE pid='".$row1['pid']."'");
+			$result3=mysqli_query($connect,"INSERT INTO deleted (pid) VALUES ('".$row1['pid']."')");
 		}
-		$result1=mysqli_query($connect,"UPDATE products SET qty=-1 WHERE uid='".$row['uid']."'");
 	}
 	
 	$result=mysqli_query($connect,"DELETE FROM user WHERE username='".$username."'");
