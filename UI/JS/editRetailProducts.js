@@ -1,41 +1,50 @@
-
-function Logout()
+function load()
 {
-	sessionStorage.clear();
-	window.location.href='./Login.html';
-}
-
-function getWalletBalance(){
-
-	username=sessionStorage.getItem('username');
+	pid=sessionStorage.getItem('pid')
 	xhr1 = new XMLHttpRequest();
 	xhr1.onreadystatechange = function()
 	{
 		if(xhr1.status==200 && xhr1.readyState==4)
 		{
-			document.getElementById('walletbalance').innerHTML=xhr1.responseText;
+			var response = JSON.parse(xhr1.responseText);
+			pname=document.getElementById('pname').value=response[0]['pname'];
+			price=document.getElementById('price').value=response[0]['price'];
+			qty=document.getElementById('qty').value=response[0]['qty'];
+			description=document.getElementById('description').value=response[0]['description'];
+			category=document.getElementById('category').value=response[0]['category'];
 		}
 	}
-	xhr1.open('POST', '../../Backend/Scripts/GetWalletBalance.php', true);
+	xhr1.open('POST', '../../Backend/Scripts/GetProductInfo.php', true);
 	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr1.send('user='+sessionStorage.getItem('username'));
+	xhr1.send("pid="+pid);
 }
-function addMoneyToWallet(){
-	amountID=document.getElementById("addAmount");
-	amount=amountID.value;
-	if(amount=="") {
-		amountID.setAttribute("style","border-color:red")
-		return;
-	}
-	else{
-		username=sessionStorage.getItem('username');
+
+function editNew()
+{
+	pid=sessionStorage.getItem('pid')
+	pname=document.getElementById('pname').value;
+	price=document.getElementById('price').value;
+	qty=document.getElementById('qty').value;
+	description=document.getElementById('description').value;
+	category=document.getElementById('category').value;
 	
-		sessionStorage.setItem('amount',amount);
-		window.location.href="Paymentgateway.html";	
+	xhr1 = new XMLHttpRequest();
+	xhr1.onreadystatechange = function()
+	{
+		if(xhr1.status==200 && xhr1.readyState==4)
+		{
+			window.location.href="./RetailHome.html"
+		}
 	}
+	xhr1.open('POST', '../../Backend/Scripts/UpdateProductInfo.php', true);
+	xhr1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr1.send("uid="+sessionStorage.getItem('uid')+"&pname="+pname+"&qty="+qty+"&sid=1&category="+category+"&price="+price+"&description="+description+"&pid="+pid);
 }
-function handleamount(input){
-	if(input.value<1) input.value=1;
+
+function Logout()
+{
+	sessionStorage.clear();
+	window.location.href='./Login.html';
 }
 
 $(document).ready(function () 
@@ -53,7 +62,7 @@ $(document).ready(function ()
 	xhr6.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr6.send('user='+username);
 	
-	getWalletBalance();
+	load();
 });
 
 $('#myModal').on('show', function() {

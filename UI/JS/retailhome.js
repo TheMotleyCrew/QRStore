@@ -40,6 +40,8 @@ $(document).ready(function () {
 	getProducts();
 });
 
+emptyflag = 1;
+
 function getProducts()
 {
 	document.getElementById('tablecontent').innerHTML='';
@@ -51,21 +53,25 @@ function getProducts()
 			myObj = JSON.parse(this.responseText);
 			for(i=0;(i<myObj.length && i<9);i++)
 			{
+				emptyflag = 0;
 				ele = document.createElement('tr');
 				ele.setAttribute("id", myObj[i]['pid']);
-				ele.innerHTML = '<td></td><td style="text-align:center; padding-top:5%;" class="sidebar">'+myObj[i]['pname']+'</td>';
-				ele.innerHTML += '<td style="text-align:center;"><b>Price: </b>'+myObj[i]['price']+'<br><b>Qty: </b>'+myObj[i]['qty']+'<br><b>Category: </b>'+myObj[i]['category']+'</td>';
-				ele.innerHTML += '<td style="text-align:center; padding-top:5%;" class="sidebar"><button onclick="EditProducts('+myObj[i]['pid']+')" type="button" class="btn btn-info sidebar">Edit</button></td>';
-				ele.innerHTML += '<td style="text-align:center; padding-top:5%;" class="sidebar"><button onclick="DeleteProducts('+myObj[i]['pid']+')" type="button" class="btn btn-danger sidebar">Delete</button></td><td></td>';
+				ele.innerHTML = '<td></td><td style="word-wrap:break-word;"><table width=100% class="table table-borderless"><th style="word-wrap:break-word;" colspan=2>'+myObj[i]['pname']+'</th><tr><td style="word-wrap:break-word;"><b>Price: </b>'+myObj[i]['price']+'</td><td style="word-wrap:break-word;"><b>Qty: </b>'+myObj[i]['qty']+'</td></tr><tr><td style="word-wrap:break-word;" colspan=2><b>Category: </b>'+myObj[i]['category']+'</td></tr><tr><td><button onclick="EditProducts('+myObj[i]['pid']+')" type="button" class="btn btn-info sidebar"><span class="glyphicon glyphicon-pencil"></span> Edit</button></td><td><button onclick="DeleteProducts('+myObj[i]['pid']+')" type="button" class="btn btn-danger sidebar"><span class="glyphicon glyphicon-trash"></span> Delete</button></td></tr></table></td><td></td>'
 				document.getElementById('tablecontent').appendChild(ele);
 			}
 			if(myObj.length>9)
 			{
 				ele=document.createElement('tr');
 				ele.setAttribute("id", "pagination");
-				ele.innerHTML = '<td></td><td></td><td></td><td></td>';
-				ele.innerHTML += '<td style="text-align:right;" class="sidebar"><br><button onclick="NextProducts(1)" type="button" class="btn btn-primary sidebar">Next</button></td>';
+				ele.innerHTML = '<td></td>';
+				ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="NextProducts(1)" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-right"></span></button></td>';
 				ele.innerHTML += '<td></td>';
+				document.getElementById('tablecontent').appendChild(ele);
+			}
+			if(emptyflag == 1)
+			{
+				ele = document.createElement('tr');
+				ele.innerHTML = '<td></td><td style="color:#f0ad4e; font-weight:bold; word-wrap: break-word;">No Products Found</td>';
 				document.getElementById('tablecontent').appendChild(ele);
 			}
 		}
@@ -77,39 +83,41 @@ function getProducts()
 
 function NextProducts(count)
 {
+	document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 	document.getElementById('tablecontent').innerHTML='';
 	for(i=count*9;(i<myObj.length && i<((count+1)*9));i++)
 	{
 		ele = document.createElement('tr');
 		ele.setAttribute("id", myObj[i]['pid']);
-		ele.innerHTML = '<td></td><td style="text-align:center; padding-top:5%;" class="sidebar">'+myObj[i]['pname']+'</td>';
-		ele.innerHTML += '<td style="text-align:center;"><b>Price: </b>'+myObj[i]['price']+'<br><b>Qty: </b>'+myObj[i]['qty']+'<br><b>Category: </b>'+myObj[i]['category']+'<br><b>Store: </b>'+myObj[i]['sname']+'</td>';
-		ele.innerHTML += '<td style="text-align:center; padding-top:5%;" class="sidebar"><button onclick="EditProducts('+myObj[i]['pid']+')" type="button" class="btn btn-info sidebar">Edit</button></td>';
-		ele.innerHTML += '<td style="text-align:center; padding-top:5%;" class="sidebar"><button onclick="DeleteProducts('+myObj[i]['pid']+')" type="button" class="btn btn-danger sidebar">Delete</button></td><td></td>';
+		ele.innerHTML = '<td></td><td style="word-wrap:break-word;"><table width=100% class="table table-borderless"><th style="word-wrap:break-word;" colspan=2>'+myObj[i]['pname']+'</th><tr><td style="word-wrap:break-word;"><b>Price: </b>'+myObj[i]['price']+'</td><td style="word-wrap:break-word;"><b>Qty: </b>'+myObj[i]['qty']+'</td></tr><tr><td style="word-wrap:break-word;" colspan=2><b>Category: </b>'+myObj[i]['category']+'</td></tr><tr><td><button onclick="EditProducts('+myObj[i]['pid']+')" type="button" class="btn btn-info sidebar"><span class="glyphicon glyphicon-pencil"></span> Edit</button></td><td><button onclick="DeleteProducts('+myObj[i]['pid']+')" type="button" class="btn btn-danger sidebar"><span class="glyphicon glyphicon-trash"></span> Delete</button></td></tr></table></td><td></td>'
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	if(myObj.length>(count+1)*9 && count>0)
 	{
 		ele=document.createElement('tr');
 		ele.setAttribute("id", "pagination");
-		ele.innerHTML = '<td></td><td></td><td></td>';
-		ele.innerHTML += '<td colspan=3 style="text-align:right;" class="sidebar"><br><button onclick="PreviousProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar">Previous</button>&ensp;<button onclick="NextProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar">Next</button></td>';
+		ele.innerHTML = '<td></td>';
+		ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="PreviousProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-left"></span></button>&ensp;<button onclick="NextProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-right"></span></button></td>';
+		ele.innerHTML += '<td></td>';
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	else if(count>0)
 	{
 		ele=document.createElement('tr');
 		ele.setAttribute("id", "pagination");
-		ele.innerHTML = '<td></td><td></td><td></td>';
-		ele.innerHTML += '<td colspan=3 style="text-align:right;" class="sidebar"><br><button onclick="PreviousProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar">Previous</button></td>';
+		ele.innerHTML = '<td></td>';
+		ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="PreviousProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-left"></span></button></td>';
+		ele.innerHTML += '<td></td>';
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	else if(myObj.length>(count+1)*9)
 	{
 		ele=document.createElement('tr');
 		ele.setAttribute("id", "pagination");
-		ele.innerHTML = '<td></td><td></td><td></td>';
-		ele.innerHTML += '<td colspan=3 style="text-align:right;" class="sidebar"><br><button onclick="NextProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar">Next</button></td>';
+		ele.innerHTML = '<td></td>';
+		ele.innerHTML += '<td></td>';
+		ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="NextProducts('+(count+1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-right"></span></button></td>';
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	
@@ -117,39 +125,41 @@ function NextProducts(count)
 
 function PreviousProducts(count)
 {
+	document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 	document.getElementById('tablecontent').innerHTML='';
 	for(i=(count-2)*9;(i<myObj.length && i<((count-1)*9));i++)
 	{
 		ele = document.createElement('tr');
 		ele.setAttribute("id", myObj[i]['pid']);
-		ele.innerHTML = '<td></td><td style="text-align:center; padding-top:5%;" class="sidebar">'+myObj[i]['pname']+'</td>';
-		ele.innerHTML += '<td style="text-align:center;"><b>Price: </b>'+myObj[i]['price']+'<br><b>Qty: </b>'+myObj[i]['qty']+'<br><b>Category: </b>'+myObj[i]['category']+'<br><b>Store: </b>'+myObj[i]['sname']+'</td>';
-		ele.innerHTML += '<td style="text-align:right; padding-top:5%;" class="sidebar"><button onclick="EditProducts('+myObj[i]['pid']+')" type="button" class="btn btn-info sidebar">Edit</button></td>';
-		ele.innerHTML += '<td style="text-align:center; padding-top:5%;" class="sidebar"><button onclick="DeleteProducts('+myObj[i]['pid']+')" type="button" class="btn btn-danger sidebar">Delete</button></td><td></td>';
+		ele.innerHTML = '<td></td><td style="word-wrap:break-word;"><table width=100% class="table table-borderless"><th style="word-wrap:break-word;" colspan=2>'+myObj[i]['pname']+'</th><tr><td style="word-wrap:break-word;"><b>Price: </b>'+myObj[i]['price']+'</td><td style="word-wrap:break-word;"><b>Qty: </b>'+myObj[i]['qty']+'</td></tr><tr><td style="word-wrap:break-word;" colspan=2><b>Category: </b>'+myObj[i]['category']+'</td></tr><tr><td><button onclick="EditProducts('+myObj[i]['pid']+')" type="button" class="btn btn-info sidebar"><span class="glyphicon glyphicon-pencil"></span> Edit</button></td><td><button onclick="DeleteProducts('+myObj[i]['pid']+')" type="button" class="btn btn-danger sidebar"><span class="glyphicon glyphicon-trash"></span> Delete</button></td></tr></table></td><td></td>'
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	if(myObj.length>(count-1)*9 && (count-2)>0)
 	{
 		ele=document.createElement('tr');
 		ele.setAttribute("id", "pagination");
-		ele.innerHTML = '<td></td><td></td><td></td>';
-		ele.innerHTML += '<td colspan=3 style="text-align:right;" class="sidebar"><br><button onclick="PreviousProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar">Previous</button>&ensp;<button onclick="NextProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar">Next</button></td>';
+		ele.innerHTML = '<td></td>';
+		ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="PreviousProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-left"></span></button>&ensp;<button onclick="NextProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-right"></span></button></td>';
+		ele.innerHTML += '<td></td>';
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	else if((count-2)>0)
 	{
 		ele=document.createElement('tr');
 		ele.setAttribute("id", "pagination");
-		ele.innerHTML = '<td></td><td></td><td></td>';
-		ele.innerHTML += '<td colspan=3 style="text-align:right;" class="sidebar"><br><button onclick="PreviousProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar">Previous</button></td>';
+		ele.innerHTML = '<td></td>';
+		ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="PreviousProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-left"></span></button></td>';
+		ele.innerHTML += '<td></td>';
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	else if(myObj.length>(count-1)*9)
 	{
 		ele=document.createElement('tr');
 		ele.setAttribute("id", "pagination");
-		ele.innerHTML = '<td></td><td></td><td></td>';
-		ele.innerHTML += '<td colspan=3 style="text-align:right;" class="sidebar"><br><button onclick="NextProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar">Next</button></td>';
+		ele.innerHTML = '<td></td>';
+		ele.innerHTML += '<td style="text-align:right;" class="sidebar"><button onclick="NextProducts('+(count-1)+')" type="button" class="btn btn-primary sidebar"><span class="glyphicon glyphicon-chevron-right"></span></button></td>';
+		ele.innerHTML += '<td></td>';
 		document.getElementById('tablecontent').appendChild(ele);
 	}
 	
@@ -169,4 +179,15 @@ function DeleteProducts(pid)
 	xhr3.open('POST', '../../Backend/Scripts/DeleteProducts.php', true);
 	xhr3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr3.send('pid='+pid);
+}
+
+function addProduct()
+{
+	window.location.href="addRetailProducts.html"
+}
+
+function EditProducts(pid)
+{
+	sessionStorage.setItem('pid',pid)
+	window.location.href="editRetailProducts.html"
 }

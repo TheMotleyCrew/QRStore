@@ -5,8 +5,7 @@ function checkUser()
 	user=document.getElementById('reguname').value;
 	if(user.localeCompare('')==0 || user==null)
 	{
-		document.getElementById('errorbox').innerHTML='<center><center>';
-		document.getElementById('errorbox').style='font-size: 25px; color: white; background-color: none';		
+		document.getElementById('errorbox').innerHTML='<center style="color: white; background-color: none"></center><br>';		
 	}
 	else
 	{
@@ -17,14 +16,13 @@ function checkUser()
 			{
 				if(this.responseText.localeCompare('False')==0)
 				{
-					document.getElementById('errorbox').innerHTML='<center>Username Already Taken<center>';
-					document.getElementById('errorbox').style='font-size: 25px; color: white; background-color: red';
+					document.getElementById('errorbox').innerHTML='<center style="color: white; background-color: red">Username Already Taken</center><br>';
+					document.body.scrollTop = 0;
 					flag = 0
 				}
 				else
 				{	
-					document.getElementById('errorbox').innerHTML='<center>Username Available<center>';
-					document.getElementById('errorbox').style='font-size: 25px; color: black; background-color: #99ff99';
+					document.getElementById('errorbox').innerHTML='<center style="color: black; background-color: #99ff99">Username Available</center><br>';
 					flag = 1
 				}
 			}
@@ -41,8 +39,9 @@ function signIn()
 	pass=document.getElementById('loginpass').value;
 	if(user.localeCompare('')==0 || user==null)
 	{
-		document.getElementById('errorbox').innerHTML='<center>Enter Username<center>';
-		document.getElementById('errorbox').style='font-size: 25px; color: white; background-color: red';		
+		document.getElementById('errorbox').innerHTML='<center style="color: white; background-color: red">Enter Username</center><br>';		
+		document.body.scrollTop = 0;
+    
 	}
 	else
 	{		
@@ -54,15 +53,22 @@ function signIn()
 				myObj = this.responseText.split(';');
 				if(myObj[0].localeCompare('False')==0)
 				{
-					document.getElementById('errorbox').innerHTML='<center>Wrong Username or Password<center>';
-					document.getElementById('errorbox').style='font-size: 25px; color: white; background-color: red';
+					document.getElementById('errorbox').innerHTML='<center style="color: white; background-color: red">Wrong Username or Password</center><br>';
+					document.body.scrollTop = 0;
+    
+				}
+				if(myObj[0].localeCompare('Pending')==0)
+				{
+					document.getElementById('errorbox').innerHTML='<center style="color: white; background-color: #99ff99">Waiting for Admin approval</center><br>';
+					document.body.scrollTop = 0;
+    
 				}
 				else if(myObj[0].localeCompare('user')==0)
 				{	
 					sessionStorage.setItem("uid", myObj[1]);
 					sessionStorage.setItem("username", user);
 					sessionStorage.setItem("role", myObj[0]);
-					document.location.href = './UserHome.html';
+					document.location.href = './ListProducts.html';
 				}
 				else if(myObj[0].localeCompare('admin')==0)
 				{	
@@ -96,8 +102,9 @@ function signUp()
 		role=document.getElementById('regrole').value;
 		if(name.localeCompare('')==0 || name==null || user.localeCompare('')==0 || user==null)
 		{
-			document.getElementById('errorbox').innerHTML='<center>Fill All Empty Fields<center>';
-			document.getElementById('errorbox').style='font-size: 25px; color: white; background-color: red';		
+			document.getElementById('errorbox').innerHTML='<center style="color: white; background-color: red">Fill All Empty Fields</center><br>';		
+			document.body.scrollTop = 0;
+    
 		}
 		else
 		{
@@ -108,18 +115,21 @@ function signUp()
 				{
 					if(this.responseText.localeCompare('False')==0)
 					{
-						document.getElementById('errorbox').innerHTML='<center>Error in Registration<center>';
-						document.getElementById('errorbox').style='font-size: 25px; color: white; background-color: red';
+						document.getElementById('errorbox').innerHTML='<center style="color: white; background-color: red">Error in Registration</center><br>';
+						document.body.scrollTop = 0;
+    
 					}
 					else if(this.responseText.localeCompare('True')==0 && role.localeCompare('retail')==0)
 					{	
-						document.getElementById('errorbox').innerHTML='<center>Waiting for Admin approval<center>';
-						document.getElementById('errorbox').style='font-size: 25px; color: black; background-color: #99ff99';
+						document.getElementById('errorbox').innerHTML='<center style="color: black; background-color: #99ff99">Waiting for Admin approval</center><br>';
+						document.body.scrollTop = 0;
+    
 					}
 					else if(this.responseText.localeCompare('True')==0 && role.localeCompare('user')==0)
 					{	
-						document.getElementById('errorbox').innerHTML='<center>Registration successflu. Proceed to LogIn<center>';
-						document.getElementById('errorbox').style='font-size: 25px; color: black; background-color: #99ff99';
+						document.getElementById('errorbox').innerHTML='<center style="color: black; background-color: #99ff99">Registration successful. Proceed to LogIn</center><br>';
+						document.body.scrollTop = 0;
+    
 					}
 				}
 			};
