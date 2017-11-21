@@ -89,8 +89,8 @@ INSERT INTO user (uid, uname, urole, username, password, wallet, address, phone,
 (9, 'Varun Pai', 'user', 'varun', 'varun', 79000, 'Sutta, PESIT, Bangalore', '7459612848', 'varun@email.com');
 
 INSERT INTO pending (uname, username, password) VALUES
-('MithaiWala', 'mithai', 'mithai'),
-('Phala', 'phala', 'phala');
+('Vin Diesel', 'diesel', 'diesel'),
+('Petrol Man', 'petrol', 'petrol');
 
 INSERT INTO stores (sid, sname, slocation) VALUES
 (1, 'Online', 'Online'),
@@ -148,7 +148,7 @@ INSERT INTO products (uid, pid, qty, price, pname, category, sid, description) V
 INSERT INTO cart (uid, pid, qty) VALUES
 (6, 11, 5),
 (6, 20, 5),
-(6, 13, 10),
+(6, 13, 3),
 (6, 44, 2),
 (6, 25, 2),
 (6, 26, 3),
@@ -161,7 +161,7 @@ INSERT INTO cart (uid, pid, qty) VALUES
 (7, 9, 2),
 (9, 2, 3),
 (9, 4, 2),
-(9, 7, 10),
+(9, 7, 1),
 (9, 8, 1),
 (9, 15, 5),
 (9, 35, 1),
