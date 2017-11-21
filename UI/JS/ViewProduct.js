@@ -138,7 +138,7 @@ function displayProduct() {
                     var product_info =  JSON.parse(response['products'][i]);
                     var op = new Option();
                     op.value = product_info['pid'];
-                    op.text = product_info['sname'] + ' sells at $' + product_info['price'];
+                    op.text = product_info['sname'] + ' sells at Rs. ' + product_info['price'];
                     seller_list.options.add(op);
                 }
                 var seller_heading = "More sellers: ";                
@@ -180,7 +180,7 @@ function displayProductInfo(pid){
 }
 
 function setPrice(price){
-    document.getElementById('product-price').innerHTML = "$"+price;
+    document.getElementById('product-price').innerHTML = "Rs. "+price;
 }
 
 function setQty(qty){

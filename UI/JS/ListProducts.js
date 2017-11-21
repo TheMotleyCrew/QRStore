@@ -68,11 +68,9 @@ function Logout()
 
 function init() {
     pageNo = 1;
-    category = 'Apparel';
     sortFilter = 'pname';
     window.onscroll = fetchMoreProducts;
     getCategories();
-	getProducts(pageNo);
 }
 
 function fetchMoreProducts() {
@@ -158,13 +156,16 @@ function disp_categories()
         var response = JSON.parse(xhr1.responseText);
         var items = response['category'];
         var count = response['count'];
-
+		
+		categories = JSON.parse(items[0]);
+		category = categories['category'];
 		document.getElementById('category').innerHTML='';
         for (var i = 0; i < count; i++) {
 
             var categories = JSON.parse(items[i]);
 			document.getElementById('category').innerHTML+='<option value="'+categories['category']+'">'+categories['category']+'</option>';
         }
+		getProducts(pageNo);
     }
 }
 

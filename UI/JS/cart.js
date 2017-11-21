@@ -48,7 +48,9 @@ function disp_products() {
 		}
 
 		if(count==0){
-			document.getElementById('container').innerHTML = '<h2>Shopping Cart is empty</h2>';
+			document.getElementById('container').setAttribute('style','width:120%');
+			document.getElementById('container').innerHTML = '<h4 style="color:#f0ad4e; font-weight:bold; word-wrap: break-word;margin-left: 15%">Shopping Cart is empty</h2>';
+			document.getElementById('checkoutbutton').setAttribute('style','display:none; pointer-events: none;');
 		}
 
 		updateTotalDisp();
@@ -70,14 +72,14 @@ function qtyChanged(pid) {
 }
 
 function updateTotalDisp() {
-	document.getElementById('total').innerHTML = "Total $" + total;
-	document.getElementById('total2').innerHTML = "Total $" + total;
+	document.getElementById('total').innerHTML = "Total Rs. " + total;
+	document.getElementById('total2').innerHTML = "Total Rs. " + total;
 }
 
 function deleteItem(pid) {
 
 	xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function (j) {console.log(j); return function () { updateView(j); }; }(pid);
+	xhr.onreadystatechange = function (j) {return function () { updateView(j); }; }(pid);
 	xhr.open('DELETE','http://localhost/QRStore/Backend/Scripts/cart.php',true);
 	xhr.send("uid="+user_id+"&pid="+pid);
 	
@@ -85,8 +87,6 @@ function deleteItem(pid) {
 
 function updateView(pid){
 	if(xhr.readyState == 4 ){
-		console.log('hi');
-		console.log(xhr.responseText);
 		var product = document.getElementById(pid);
 		var prod_subTotal = product.querySelector('#prod_subTotal');
 		total -= parseInt(prod_subTotal.innerHTML);
@@ -99,7 +99,7 @@ function updateView(pid){
 
 function updateCart() {
 	var count = document.getElementById('product_list').rows.length;
-
+	console.log('1');
 	xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = disp;
 	xhr.open('PUT', 'http://localhost/QRStore/Backend/Scripts/cart.php', true);
@@ -109,7 +109,6 @@ function updateCart() {
 
 function disp() {
 	if (xhr.readyState == 4 && xhr.status==200) {
-		console.log(xhr.responseText);
 		// window.location = 'http://localhost/QRStore/UI/HTML/checkout.html';
 
 	}
