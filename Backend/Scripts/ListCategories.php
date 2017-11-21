@@ -24,7 +24,7 @@
 
         // echo "Tot: ". $result['num_rows'];
 
-        $sql = "SELECT DISTINCT category FROM products ORDER BY category";
+        $sql = "SELECT  DISTINCT category FROM products WHERE sid=1 ORDER BY category";
         $result = mysqli_query($conn, $sql);
 
         $response =array("count"=>0,"category"=>[]);

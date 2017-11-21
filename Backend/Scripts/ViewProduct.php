@@ -21,11 +21,11 @@
        
         
         if($online==1){            
-            $sql = "SELECT * from products WHERE pname='$pname' and qty>0 and sid=1 ORDER BY price ASC ";
+            $sql = "SELECT * from products WHERE pname='$pname' and pid NOT IN (select * from deleted) and sid=1 ORDER BY price ASC ";
         }
        
         else{
-            $sql = "SELECT * from products WHERE pid='$pid' and qty>0 and sid!=1";            
+            $sql = "SELECT * from products WHERE pid='$pid' and pid NOT IN (select * from deleted) and sid!=1";            
         }
 
         $result = mysqli_query($conn, $sql);

@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 
     if($online==1){
         // echo "Yes!";
-        $sql = "SELECT u.username as seller,c.pid,c.qty FROM cart as c , products as p, user as u WHERE c.uid='$uid' and c.pid=p.pid and p.sid=1 and p.uid=u.uid ";
+        $sql = "SELECT u.uname as seller,c.pid,c.qty FROM cart as c , products as p, user as u WHERE c.uid='$uid' and c.pid=p.pid and p.sid=1 and p.uid=u.uid ";
     }
     else{
         $sql = "SELECT s.sname as seller ,c.pid,c.qty FROM cart as c , products as p, stores as s WHERE c.uid='$uid' and c.pid=p.pid and p.sid!=1 and p.sid=s.sid ";        
