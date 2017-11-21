@@ -46,20 +46,80 @@
     * Create your own at http://cspisawesome.com
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
-
-    <script type="text/javascript" src="js/test.js"></script>
+	
+	<link rel='stylesheet' href='./UI/CSS/bootstrap.css'>
+	<link rel='stylesheet' href='./UI/CSS/ourstyle.css'>
+	<link rel='stylesheet' href='./UI/CSS/login.css'>
+	<link rel="stylesheet" href="./UI/CSS/adminhome.css">
+	<link href="./UI/CSS/ListProducts.css" rel="stylesheet">
+	<script src="./UI/JS/jquery.js"></script>
+	<script src="./UI/JS/bootstrap.js"></script>
+	<script src="./UI/JS/jquery.nicescroll.min.js"></script>
+	<script type="text/javascript" src="./UI/JS/index.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
 	<title>Hello World</title>
 </head>
 
-<body>
-    <br><br><br><br>
-        
-        <div id="container" style=" margin-top: 8%;" onclick="scanBarcode()">
+<body class='georgia'>
+    <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                
+                <div class="sidebar-header">
+                    <h3 id='adminusername'></h3>
+                </div>
+
+                <ul class="list-unstyled components sidebar">
+                    <li>
+                        <a href="./UI/HTML/Myaccount.html">Profile</a>
+                    </li>
+					<li>
+                        <a href="./UI/HTML/ListProducts.html">Store</a>
+                    </li>
+                    <li class='active'>
+                        <a>Scanner</a>
+                    </li>
+					<li>
+                        <a href="./UI/HTML/cart_intermediate.html">Cart</a>
+                    </li>
+					<li>
+                        <a href="./UI/HTML/Userwallet.html">Wallet</a>
+                    </li>
+                    <li>
+						<a href="./UI/HTML/Myorders.html">Previous Orders</a>
+					</li>
+					<li>
+                        <a href="javascript:Logout()">Logout</a>
+                    </li>
+                </ul>
+
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+				<table width='100%' style='border-color: #99ccff;'>
+					<th class='darkblue' width='15%'>
+						<div width='100%' class="navbar-header">
+                            <button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                            </button>
+                        </div>
+					</th>
+					<th class='blue' width='85%'>
+						
+					</th>
+					
+					
+					<tr>
+						<td colspan = 2>
+							<br><br>
+							<div id="container" style=" margin-top: 8%;" onclick="scanBarcode()">
             <div class="row">
                 <center>
                     <button>
                         <div>
-                            <img style="box-shadow: 0px 0px 0px  gray;" src="http://192.168.1.6:3000/UI/Assets/camera.png" alt="">
+                            <img style="box-shadow: 0px 0px 0px  gray;" src="./UI/Assets/camera.png" alt="">
                         </div>
                     </button>
                     <br>
@@ -69,9 +129,15 @@
             </div>
 
         </div>
-	
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+
+						</td>
+					</tr>
+				</table>
+				
+            </div>
+        </div>
+        <div class="overlay"></div>
+		
     
 </body>
 
