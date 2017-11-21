@@ -17,7 +17,7 @@
 	<script src="../JS/cart.js" type="text/javascript"></script>
 </head>
 
-<body>
+<body class='georgia'>
 	
 	
 	
@@ -37,7 +37,7 @@
 					<a href="./ListProducts.html">Store</a>
 				</li>
 				<li>
-					<a href="./QRScan.html">Scanner</a>
+					<a href="../../index.html">Scanner</a>
 				</li>
 				<li>
                         <a href="./cart_intermediate.html">Cart</a>
@@ -70,10 +70,10 @@
 					
 				</th>
 				<tr>
-					<td colspan = 2>
+					<td colspan = 2 style='position:relative;left:-11%'>
 					<br>
-    <div class="container table-responsive" id="container">
-		<table id="cart" class="table table-hover table-condensed">
+    <div style="width:100%" class="container table-responsive" id="container">
+		<table style="width:100%" id="cart" class="table table-hover table-condensed">
 			<thead>
 				<tr>
 					<th style="width:50%">Product</th>
@@ -89,12 +89,12 @@
 						<div class="row">
 							<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" id="prod_img" /></div>
 							<div class="col-sm-10">
-								<h4 class="nomargin" id="prod_name">Product 1</h4>
-								<p id="seller_name">This is the product description</p>
+								<h4 class="nomargin" id="prod_name"></h4>
+								<p id="seller_name"></p>
 							</div>
 						</div>
 					</td>
-					<td data-th="Price" id="prod_price">$1.99</td>
+					<td data-th="Price" id="prod_price"></td>
 					<td data-th="qty">
 						<!-- <input type="number" class="form-control text-center" value="1"> -->
 						<select name="qty" id="qty" class="form-control text-center">
@@ -105,7 +105,7 @@
 							<option value="5">5</option>
 						</select>
 					</td>
-					<td data-th="Subtotal" class="text-center" id="prod_subTotal">1.99</td>
+					<td data-th="Subtotal" class="text-center" id="prod_subTotal"></td>
 					<td data-th="" class="actions">
 						<button class="btn btn-danger btn-sm" style="text-align :center"id="delete"><i class="glyphicon glyphicon-trash"></i></button>
 					</td>
@@ -113,13 +113,13 @@
 			</tbody>
 			<tfoot>
 				<tr class="visible-xs">
-					<td class="text-center" ><strong id="total">Total 1.99</strong></td>
+					<td class="text-center" ><strong id="total"></strong></td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn btn-warning" onclick="updateCart()"><i class="glyphicon glyphicon-chevron-left"></i> Continue Shopping</a></td>
+				<td><a id="updatecartbutton" onclick="updateCart()" class="btn btn-info btn-block">Update Cart </a></td>
 					<td colspan="2" class="hidden-xs"></td>
-					<td class="hidden-xs text-center"><strong  id="total2"> Total $1.99</strong></td>
-					<td><a href="#" class="btn btn-success btn-block" onclick="updateCart()">Checkout <i class="glyphicon glyphicon-chevron-right"></i></a></td>
+					<td class="hidden-xs text-center"><strong  id="total2"></strong></td>
+					<td><a id="checkoutbutton" href="./checkout.html" class="btn btn-success btn-block">Checkout <i class="glyphicon glyphicon-chevron-right"></i></a></td>
 				</tr>
 			</tfoot>
 		</table>

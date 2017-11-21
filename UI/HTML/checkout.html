@@ -2,139 +2,96 @@
 <html>
 	<head>
 	
+		<link href="../CSS/bootstrap.min.css" rel="stylesheet">
+		<link href="../CSS/cart.css" rel="stylesheet">
+		<link href="../Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../Fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../CSS/cart.css">
 		<link rel='stylesheet' href='../CSS/bootstrap.css'>
 		<link rel='stylesheet' href='../CSS/ourstyle.css'>
 		<link rel='stylesheet' href='../CSS/login.css'>
 		<link rel="stylesheet" href="../CSS/adminhome.css">
 		<script src="../JS/jquery.js"></script>
 		<script src="../JS/bootstrap.js"></script>
-		<script src="../JS/retailhome.js"></script>
 		<script src="../JS/jquery.nicescroll.min.js"></script>
-      <script  type="text/javascript"> 
-//button implementation is left. As further location was not known.
-
-  function success(){
-	
-			var xhr= new XMLHttpRequest();
-			xhr.open("GET","/QRStore-master/QRStore-master/Backend/Scripts/checkout.php",true);
-			xhr.send();
-			xhr.onreadystatechange=function()
-			{
-			  if(xhr.readyState==4 && xhr.status== 200)
-				{
-				var data = xhr.responseText.split(":");
-				//alert(data);
-				var t = document.getElementById("tab1");
-				var to= document.getElementById("tot");
-				//alert(to);
-				var x = data[data.length-1];
-				var q = x.split(",");
-				
-				//alert(x);
-				var i=0;
-					
-					for (var i = 0 ; i < data.length -1; i++) {
-						var tr = document.createElement("tr");
-                             var d = data[i].split(",");
-							
-						for (var j = 0; j < 6 ; j++) {
-						  
-							var td = document.createElement("td");
-							td.setAttribute("style", "text-align: center;");
-							var txt = document.createTextNode(d[j]);
-							td.appendChild(txt);
-							tr.appendChild(td);
-							}
-							t.appendChild(tr);
-						}
-						
-					to.innerHTML= "Total : " +    q[0];
-					var dis = document.getElementById("dis");
-					if(q[1] == 1) dis.innerHTML = "Success"
-					else dis.innerHTML = "Not sufficient balance with user";
-				}	
-			};
-		
-			}
-			
-	</script>
-	 
-	 
-	 
-
+		<script src="../JS/checkout.js"></script>
+    
 	</head>
  	
-	<body class='georgia' onload="success()">
+	<body class='georgia'">
 	  
         <div class="wrapper">
-            <!-- Sidebar Holder -->
-            <nav id="sidebar">
-                
-                <div class="sidebar-header">
-                    <h1>QR Store</h3>
-                </div>
+		<!-- Sidebar Holder -->
+		<nav id="sidebar">
+			
+			<div class="sidebar-header">
+				<h3 id='adminusername'></h3>
+			</div>
 
-                <ul class="list-unstyled components sidebar">
-                    <li class="active">
-                        <a>Store</a>
-                    </li>
-                    <li>
-                        <a href="javascript:Logout()">Logout</a>
-                    </li>
-                </ul>
+			<ul class="list-unstyled components sidebar">
+				<li>
+					<a href="./Myaccount.html">Profile</a>
+				</li>
+				<li>
+					<a href="./ListProducts.html">Store</a>
+				</li>
+				<li>
+					<a href="../../index.html">Scanner</a>
+				</li>
+				<li>
+                        <a href="./cart_intermediate.html">Cart</a>
+                </li>
+				<li>
+					<a href='./Userwallet.html'>Wallet</a>
+				</li>
+				<li>
+						<a href='Myorders.html'>Previous Orders</a>
+				</li>
+				<li>
+					<a href="javascript:Logout()">Logout</a>
+				</li>
+			</ul>
 
-            </nav>
+		</nav>
 
-            <!-- Page Content Holder -->
-            <div id="content" bgcolor="red">
+		<!-- Page Content Holder -->
+		<div id="content">
 
-				<table width='100%' style='border-color: #99ccff;'>
-					<th class='darkblue' width='10%'>
-						<div width='100%' class="navbar-header">
-                            <button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
-                                <i class="glyphicon glyphicon-align-left"></i>
-                            </button>
-                        </div>
-					</th>
-					<th class='blue'>
-						<p style='text-align: right;color: #6d7fcc; padding-right: 5%; padding-top: 2%'><b class='sidebar' id='adminusername'></b></p>
-					</th>
-					<tr>
-						<td colspan = 2>
-							<br><br>
-							
-							<br><br><br>
-							
-						</td>
+			<table width='100%' style='border-color: #99ccff;'>
+				<th class='darkblue' width='15%'>
+					<div width='100%' class="navbar-header">
+						<button width='100%' type="button" id="sidebarCollapse" class="btn btn-info navbar-btn darkblue">
+							<i class="glyphicon glyphicon-align-left"></i>
+						</button>
+					</div>
+				</th>
+				<th class='blue' width='85%'>
+					
+				</th>
+				<tr>
+					<td colspan = 2>
+					<br>
+					<p style="color:#f0ad4e; font-weight:bold; word-wrap: break-word;font-size: 30px">Cart Products<p>
+					<table class='table table-striped' width ='100%'>
+						<thead>
+							<tr>
+								<th style='text-align:center;' width='5%'></th>
+								<th style='text-align:center;' width='80%'></th>
+								<th style='text-align:center;' width='5%'></th>
+							</tr>
+						</thead>
+						<tbody id='tablecontent'>
+						</tbody>
+					</table>
+					<br>
+					<center><input id='pay' onclick='purchase()' class='btn btn-success' type='button' value='Pay From Wallet'></center>
+					</td>
 				</tr>
+			</table>
 			
-		</table>
-			
-            </div>
-        </div>
-		
-        <div class="overlay"></div>
-		
-		</br></br></br></br>
-		<table class="intt" width ='100%' id = "tab1">
-								<thead>
-									<tr>
-								
-										<th class='sidebar' style='text-align:center;' >Product_id</th>
-										<th class='sidebar' style='text-align:center;' >Product_Name</th>
-										<th class='sidebar' style='text-align:center;' >Quantity</th>
-										<th class='sidebar' style='text-align:center;' >Net Price</th>
-										<th class='sidebar' style='text-align:center;' >Store ID</th>
-										<th class='sidebar' style='text-align:center;' >Availability</th>
-										
-									</tr></thead>
-							
-								
-		</table>
-		
-		<button type="button" id = "c" class="btn btn-success" style="float:right" onclick="check()" >Success</button>
-		<br></br>
-	   <div id = "tot" class='sidebar' style='text-align:centre;'></div>
-	   <div id ="dis" class='sidebar'></div> 
+		</div>
+	</div>
+	<div class="overlay"></div>
+
 	</body>
 </html>

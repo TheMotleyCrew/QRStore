@@ -16,7 +16,7 @@
 	
 </head>
 
-<body>
+<body class='georgia'>
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
 		<nav id="sidebar">
@@ -33,7 +33,7 @@
 					<a href="./ListProducts.html">Store</a>
 				</li>
 				<li>
-					<a href="./QRScan.html">Scanner</a>
+					<a href="../../index.html">Scanner</a>
 				</li>
 				<li>
                         <a href="./cart_intermediate.html">Cart</a>
@@ -77,14 +77,16 @@
 
                 </div>
                 <br><br><br><br>
+				<form onsubmit="addMoneyToWallet(); return false;">
                 <div class="col-md-4 col-xs-12 text-center amt">
 
-                    <input style='height:50px' class="form-control" id="addAmount" name="amount" type="number" max-length="6" min="0" placeholder="Enter amount to add">
+                    <input style='height:50px' class="form-control" id="addAmount" name="amount" type="number" max-length="6" min=1 step=1 placeholder="Enter amount to add" required>
                 </div>
                 <br><br><br>
 				<div class="col-md-3 col-xs-12 text-center ">
-                    <button type="submit" onclick="addMoneyToWallet()"  class="btn-lg btn-primary ">Add Money to Wallet</button>
+                    <input type="submit"  class="btn-lg btn-primary value="Add Money to Wallet">
                 </div>
+				</form>
                
 
 
